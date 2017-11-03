@@ -11,16 +11,24 @@
     "eslint": "^4.2.0",
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-prettier": "^2.1.2",
+    "google-charts": "^1.0.0",
     "prettier": "^1.5.2"
   },
   "dependencies": {
+    "axios": "^0.17.0",
+    "bootstrap-select": "^1.12.4",
+    "choices.js": "^3.0.2",
+    "coffeekraken-s-select-component": "^1.0.1",
+    "jsdom": "^11.3.0",
+    "lasso-image": "^1.0.12",
     "marko": "^4.2.4",
-    "marko-starter": "^1.0.0"
+    "marko-starter": "^1.2.1",
+    "moment": "^2.19.1"
   },
   "scripts": {
     "start": "marko-starter server",
-    "build": "NODE_ENV=production marko-starter build",
-    "serve-static": "NODE_ENV=production marko-starter serve-static",
+    "build": "marko-starter build",
+    "serve-static": "marko-starter serve-static",
     "lint": "eslint src/",
     "test": "npm run lint",
     "prettier": "prettier src/**/*.{js,css,less} *.js --write"
