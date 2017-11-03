@@ -1,0 +1,49 @@
+
+
+<div class="row">
+    <div class="col-4">
+        <img class="img-fluid" style="max=height:180px" src="./roguemech.png">
+    </div>
+    <div class="col-8">
+        <div class="row">
+            <div class="col-8" style="padding-left:10px">
+                <table>
+                <tr>
+                    <th colspan="2" id="specialAbility">20% damage bonus to all attacks</th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        Armor
+                    </td>
+                    <td align="center">
+                        Attack
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        +12
+                    </td>
+                    <td align="center">
+                        +4
+                    </td>
+                </tr>
+                </table>
+            </div>
+            <div class="col-4">
+            <table>
+                <tr>
+                    <th align="right">Cards available:</th>
+                </tr>
+                <tr>
+                    <td align="right" style="font-size:24px"><strong>1200</strong></td>
+                </tr>
+            </table>
+            </div>
+        </div>
+        <div class="row align-self-end">
+            <div>
+                <span>The mechs were originally created to repair colony ships on long multi-generational voyages across the galaxy. In a dark twist of fate, the mechs broke down over the eons but eventually figured out how to repair themselves. Once the parts to repair each other dried up, they turned to the sleeping colony ships and stripped them while the colonists died in their sleep. As some humans managed to defend themselves, the mechs figured out how to free themselves from the safety protocols that kept humans safe. Rogue Mechs then turned into lethal killing machines and now run amok throughout the galaxy.</span> 
+            </div>
+        </div>
+    </div>
+</div>

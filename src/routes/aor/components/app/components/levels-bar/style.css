@@ -1,0 +1,99 @@
+.container {
+    background-color: white;
+}
+
+th {
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    border-top: 1px solid #ddd;
+}
+
+
+/*styles for card info row*/
+
+.cardInfoRow {
+    padding-top:20px;
+    padding-bottom:0px; 
+    z-index:1;
+    position:relative;
+    background-color:white;
+}
+
+/*----------------Ability Table Styles-------*/
+.abilityTable {
+    width:100%;
+}
+
+/*special coloring for ability text */
+#specialAbilityText {
+    color: #20124D;
+    font-size:20px;
+    padding-right:15px; /*will give entire table this right padding*/
+    padding-bottom:10px
+}
+
+table.abilityTable tr {
+    border-right:1px solid #eceeef;
+}
+
+table.abilityTable td.cardTraits {
+    padding:5px;
+}
+
+table.abilityTable td.traitValues {
+    padding-top:5px;
+    padding-bottom:10px /* to leave space below abilities table when description scrolls up*/
+}
+
+/*styling for card description - 2 viewport styles*/
+/*large viewport styles*/
+.cardDescriptionMd {
+    position:relative;
+    left:0;
+    bottom:15px;
+    padding-left:10px;
+    max-height:200px;
+    overflow:auto;
+    z-index:0
+}
+
+
+/*small viewport styles*/
+.row.cardDescriptionSmall {
+    border-top: 1px solid #ccc /*black separation between pic container and card description*/
+}
+
+/*styling for description text container*/
+.cardDescriptionSmall.descriptionDiv {
+    max-height:150px;overflow:auto;z-index:1;padding:15px
+}
+
+/*Media queries*/
+@media (max-width: 767px) {
+    .abilityTable {
+        font-size:18px;
+    }
+    #specialAbilityText {
+        font-size:18px; /*decrease for small viewport*/
+    }
+    .xsAvailableTable {
+        font-size:18px;
+    }
+    .smAvailableTable {
+        display: none;
+    }
+    .cardDescriptionMd {
+        display: none;
+    }
+    
+}
+@media (min-width: 768px) {
+    .xsAvailableTable {
+        display: none;
+    }
+    .cardDescriptionSmall {
+        display: none;
+    }
+}

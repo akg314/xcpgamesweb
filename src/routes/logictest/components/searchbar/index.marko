@@ -1,0 +1,17 @@
+class {
+    onCardSelect() {
+        var el = this.getEl('cardSelect');
+        var selected = el.options[el.selectedIndex].value;
+        this.emit('select-card', selected);
+    }
+}
+
+<select class="custom-select" key="cardSelect" onChange('onCardSelect')>
+        <option selected value=''>(Pick a card)</option>
+        <option value="SATOSHICARD">Satoshi Card</option>
+        <option value="QUIRINCARD">Quirin Card</option>
+</select>
+
+<!--card selector-->
+<!--should emit the card selected on change-->
+<!--all the other components should listen for a function called on change and update their views-->

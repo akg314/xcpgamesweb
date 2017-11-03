@@ -1,0 +1,31 @@
+<!--app structure contained in this component-->
+$ var $ = require('jquery');
+class {
+    <!--initialize with a default card-->
+    onCreate() {
+        this.state = { 
+            selectedCard: null,
+            tradesData: null,
+        }
+    }
+    <!--Accessories methods for getting each api end point-->
+    getTradesData(sel) {
+        console.log('http://sogdb.com/card/' + sel + '/trades');
+        $.get('http://sogdb.com/card/' + sel + '/trades', data => this.state.tradesData = data);
+        console.log(this.state.tradesData);
+        this.emit('trades-available', this.state.tradesData);
+    }
+    updateData(sel) {
+        console.log(sel);
+        this.getTradesData(sel);
+    }
+    
+}
+
+
+<div>
+    <p>${state.selectedCard}</p>
+    <searchbar on-select-card('updateData')/>
+    <graph on-trades-available('drawGraph') 
+    trades=state.tradesData/>
+</div>

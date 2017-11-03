@@ -1,0 +1,63 @@
+<div id="open-buy-orders" class="col-xs-12 col-sm-6">
+    <table class="table table-condensed table-striped table-hover" style="width:100%;">
+        <caption><strong>Open Buy Orders</strong></caption>
+        <thead>
+            <tr>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Currency</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Expiry block</th>
+            </tr>  
+        </thead>
+        <tbody>
+        <for (order in input.buyOrders)>
+        <tr class="success">
+            <td align="center">
+                ${order.get_remaining}
+            </td>
+            <td align="center">
+                ${order.give_asset}
+            </td>
+            <td align="center">
+                ${order.give_remaining }
+            </td>
+            <td align="center">
+                ${order.block_index + order.expiration}
+            </td>
+        </tr>
+        </for>
+        </tbody>   
+    </table>
+</div>
+<div id="open-sell-orders" class="col-xs-12 col-sm-6">
+    <table class="table table-condensed table-striped table-hover" style="width:100%;">
+        <caption><strong>Open Sell Orders</strong></caption>
+        <thead>
+            <tr>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Currency</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Expiry block</th>
+            </tr>  
+        </thead>
+        <tbody>
+        <for (order in input.sellOrders)>
+        <tr class="danger">
+            <td align="center">
+                ${order.give_remaining}
+            </td>
+            <td align="center">
+                ${order.get_asset}
+            </td>
+            <td align="center">
+                ${order.get_remaining }
+            </td>
+            <td align="center">
+                ${order.block_index + order.expiration}
+            </td>
+        </tr>
+        </for>
+        </tbody>   
+    </table>
+</div>
+    

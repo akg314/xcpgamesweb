@@ -1,0 +1,32 @@
+style {
+    .levels-table {
+        border-collapse:collapse !important;
+    }
+    .levels-table.tr {
+        border-top: thin solid !important;
+    }
+}
+
+<table style="width:100%" class="table table-striped table-hover table-condensed levels-table">
+    <thead>
+        <tr>
+            <th class="text-center">Level</th>
+            <th class="text-center">Health</th>
+            <th class="text-center">Attack</th>
+            <th class="text-center">Speed</th>
+            <th class="text-center">Spell</th>
+            <th class="text-center">Power</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <for(level in input.levels)>
+           <tr> 
+            <for (name,value in level)>
+                <td align="center">
+                    ${value}
+                </td>
+            </for>
+            </tr>
+        </for>
+    </tbody>         
+</table>

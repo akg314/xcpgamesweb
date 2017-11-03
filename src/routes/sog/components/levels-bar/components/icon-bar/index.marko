@@ -1,0 +1,37 @@
+
+$ var cardInfo = input.cardInfo;
+
+style {
+    .iconBar {
+        background-color: #ffe990;
+        text-align: center;
+    }
+    .sm-icon-bar {
+        margin-top: 10px; /*padding for mobile display*/
+    }
+    @media (max-width: 767px) {
+        .md-icon-bar {
+            display: none;
+        }
+    }
+    @media (min-width: 768px) {
+        .sm-icon-bar {
+            display: none;
+        }
+    } 
+}
+
+<table class="md-icon-bar" style="width:100%">
+    <th class="iconBar"><img style="max-height:35px" src="http://sogdb.com/images/icons/elements/"+cardInfo.element+".png"></th>
+    <th class="iconBar" style="padding:2px"><img style="max-height:55px" src="http://sogdb.com/images/icons/rarity/"+cardInfo.rarity+".png"></th>
+    <th class="iconBar" style="padding-top:10px"><img style="max-height:45px;" src="http://sogdb.com/images/icons/health/"+cardInfo.levels[0].health+".png"></th>
+    <th class="iconBar" style="padding-top:1px"><img style="max-height:45px" src="http://sogdb.com/images/icons/attack/"+cardInfo.levels[0].attack+".png"></th>
+    <th class="iconBar"><img style="max-height:45px" src="http://sogdb.com/images/icons/speed/"+cardInfo.levels[0].speed+".png"></th>
+</table>
+<table class="sm-icon-bar" style="width:100%">
+    <th class="iconBar"><img style="max-height:30px" src="http://sogdb.com/images/icons/elements/"+cardInfo.element+".png"></th>
+    <th class="iconBar" style="padding:2px"><img style="max-height:35px" src="http://sogdb.com/images/icons/rarity/"+cardInfo.rarity+".png"></th>
+    <th class="iconBar" style="padding-top:10px"><img style="max-height:30px;" src="http://sogdb.com/images/icons/health/"+cardInfo.levels[0].health+".png"></th>
+    <th class="iconBar" style="padding-top:1px"><img style="max-height:30px" src="http://sogdb.com/images/icons/attack/"+cardInfo.levels[0].attack+".png"></th>
+    <th class="iconBar"><img style="max-height:30px" src="http://sogdb.com/images/icons/speed/"+cardInfo.levels[0].speed+".png"></th>
+</table>

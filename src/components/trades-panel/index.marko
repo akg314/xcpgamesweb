@@ -1,0 +1,13 @@
+$ var recentTrades=input.trades;
+
+<div class="row infocontainer panel">
+    <div class="col-xs-12 col-md-7">
+        <div id="chart_div"></div>
+    </div>
+    <div class="col-xs-12 col-md-5">
+        <recent-trades-table recentTrades=input.trades/>
+    </div>
+    <div>
+        <open-orders buyOrders=input.orders.BuyOrders sellOrders=input.orders.SellOrders/>
+    </div>
+</div>
