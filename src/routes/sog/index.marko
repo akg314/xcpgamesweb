@@ -1,8 +1,16 @@
 <site-layout>
-  <@title>
-    Spells of Genesis
-  </@title>
-  <@content>
-    <app/>
-  </@content>
+    <@title>
+        Spells of Genesis
+    </@title>
+    <@content>
+        <div class="container" style="background:white;padding:15px">
+            <if(input.query.card)>
+                <a href="/sog" class="btn btn-primary btn-lg active" role="button">Back to all cards</a>
+                <app card=input.query.card/>
+            </if>
+            <else>
+				<card-binder gameId="sog" imgsrc="http://sogdb.com/images/sogcards/"/>
+            </else>
+        </div>
+    </@content>
 </site-layout>
