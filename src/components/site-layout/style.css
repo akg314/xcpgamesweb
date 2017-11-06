@@ -1,63 +1,37 @@
+/*-----------------------------*/
+/*body background and font sitewide*/
 body {
     background-color: black;
     font-family: 'EB Garamond', serif;
+    font-size:18px; 
 }
-
-.titlebar {
-    padding-bottom: 10px;
-}
-.titlebar.select-card-text {
-    color: #ffe990;
-}
-
-.table-striped>tbody>tr:nth-child(odd),
-.table-striped>tbody>tr:nth-child(odd) {
-    background-color: #fff6d0;
-}
-
-/*change color for hover*/
-.table-hover tbody tr:hover td {
-    background-color: #ffeea1;
-}
-
-/*css for card stats container and trade info container */
-.infocontainer {
-    padding:5px;
-    background:white;
-    margin-bottom:10px;
-}
-
+/*-----------------------------*/
+/*site layout styles*/
 header {
   padding: 5px;
   border-bottom: 1px solid #ccc;
   background: #fff;
 }
-
-img.logo {
-  width: 160px;
-  height: 88px;
-  margin-bottom: 1em;
+    /* styling for horizontal navbar*/
+.mynavbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
-h1 {
-  font-size: 24px;
-  font-weight: 300;
-  margin: 0;
+.mynavbar li {
+    float: left;
+    font-size:18px;
 }
 
-h2 {
-  font-weight: 600;
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
+.mynavbar li a {
+    display: block;
+    padding: 8px;
+    
 }
 
-h3 {
-  font-weight: 600;
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
-  font-size: 1em;
-}
-
+    /*styling for sidenavbar*/
 .sidenav {
     height: 100%;
     width: 0;
@@ -101,4 +75,41 @@ h3 {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+/*-----------------------------*/
+/*styling for all tables*/
+    /*striped rows for readibility*/
+.table-striped>tbody>tr:nth-child(odd),
+.table-striped>tbody>tr:nth-child(odd) {
+    background-color: #fff6d0;
+}
+
+    /*change color for hover*/
+.table-hover tbody tr:hover td {
+    background-color: #ffeea1;
+}
+/*-----------------------------*/
+/*css for card stats container and trade info containers */
+.infocontainer {
+    background:white;
+}
+
+/*-----------------------------*/
+/*sitewide heading styles*/
+h1 {
+  font-size: 24px;
+  font-weight: 300;
+  margin: 0;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+
 

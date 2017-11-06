@@ -23,7 +23,7 @@
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)};gtag('js', new Date()); gtag('config', 'UA-104886139-2');
   </script>
   <!--google charts drawChart script-->
-  <script src="http://sog.nnto.net/priceChart.js"></script>
+  <!--<script src="http://sog.nnto.net/priceChart.js"></script>-->
   <title><include(input.title)/></title>
 </head>
 <body>
@@ -31,13 +31,26 @@
     <!--<img.logo src="" alt="placeholder logo"/>-->
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="/">Home</a>
-      <a href="/aor">Age of Rust</a>
-      <a href="/logictest">Logic Practice</a>
-      <a href="/sog">Spells of Genesis</a>
+      <a href="/">Card Binder</a>
+      <a href="/aor">Market Pulse</a>
+      <a href="/logictest">Recent Trades</a>
     </div>
     <div id="main">
-      <p style="font-size:24px;cursor:pointer" onclick="openNav()">&#9776     <include(input.title)/></p>
+        <div class="row">
+            <div class="col-xs-2">
+                <p style="font-size:24px;cursor:pointer" onclick="openNav()">&#9776</p>
+            </div>
+            <div class="col-xs-10 col-sm-6 mynavbar">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/aor">Age of Rust</a></li>
+                  <li><a href="/sog">Spells of Genesis</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h1><strong><include(input.title)/></strong></h1>
+            </div>
+        </div>
     </div>
   </header>
   <script>
@@ -57,4 +70,3 @@
   </div>
   </body>
 </html>
-

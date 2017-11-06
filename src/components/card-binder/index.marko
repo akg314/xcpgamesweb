@@ -1,0 +1,54 @@
+$ var $ = require('jquery');
+class {
+    onCreate() {
+        this.state = { 
+           cards: [],
+        }
+    }
+    onMount() {
+        console.log("loading cards for card binder");
+        $.get('http://sogdb.com/cards', data => this.state.cards = data.sort());
+    }
+}
+<div class="row text-center" style="padding-top:10px;">
+	<h2 style="margin-top:10px">Pick a card below...</h2>
+		<if(!state.cards.length)>
+			<h5>Loading cards...</h5>
+		</if>
+		<else>
+    <for (card in state.cards)>
+        <div class="col-xs-4 col-sm-3" style="padding-bottom:10px">
+            <div class="cardBinderItem">
+                <a href="/"+input.gameId+"?card="+card> 
+                    <img class="img-responsive" src=input.imgsrc+card+".jpg"/>
+                    <div class="caption" style="word-wrap:break-word"><strong>${card}</strong></div>
+                </a>
+            </div>
+        </div>
+    </for>
+		</else>
+</div>
+
+style {
+	div.cardBinderItem {
+		padding: 5px;
+	}
+	.cardBinderItem .caption {
+		color: black
+	}
+	.cardBinderItem:hover {
+		background-color: #286090;
+	}
+	.cardBinderItem:hover .caption {
+		color: #ffe990
+	}
+	@media screen and (max-width: 480px) {
+		.caption {
+			font-size: 12px ! important
+		}
+		.container {
+			padding:1px ! important;
+		}
+	}
+	
+}
