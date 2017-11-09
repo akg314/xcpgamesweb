@@ -4,7 +4,7 @@ $ var card = input.card;
 
 var tradesPromise = new Promise(function(resolve,reject) {
     var request = new XMLHttpRequest();
-    request.open('GET', "http://sogdb.com/card/" + input.card + "/trades");
+    request.open('GET', "http://aquabox/card/" + input.card + "/trades");
     request.responseType = 'blob';
     // When the request loads, check whether it was successful
     request.onload = function() {
@@ -20,7 +20,7 @@ var tradesPromise = new Promise(function(resolve,reject) {
 });
 var ordersPromise = new Promise(function(resolve,reject) {
     var request = new XMLHttpRequest();
-    request.open('GET', "http://sogdb.com/card/" + input.card + "/orders");
+    request.open('GET', "http://aquabox/card/" + input.card + "/orders");
     request.responseType = 'blob';
     // When the request loads, check whether it was successful
     request.onload = function() {
@@ -36,7 +36,7 @@ var ordersPromise = new Promise(function(resolve,reject) {
 });
 var levelsPromise = new Promise(function(resolve,reject) {
     var request = new XMLHttpRequest();
-    request.open('GET', "http://sogdb.com/card/" + input.card);
+    request.open('GET', "http://aquabox/card/" + input.card);
     request.responseType = 'blob';
     // When the request loads, check whether it was successful
     request.onload = function() {

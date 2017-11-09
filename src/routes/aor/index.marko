@@ -1,11 +1,4 @@
-class {
-    onCreate() {
-        this.state = {
-            cards: ['ROGUEMECH', 'FGTNWASTELND', 'THEBOUNTY', 'GHOSTPILOT', 'MECHRUNNERS', 'CRUSADECARD', 'REVENGECARD', 'DEVSTATCARD', 'THEORIGIN', 'LASTLIGHT'],
-            src: "./images/"
-        }
-    }
-}
+$ var cards = ['ROGUEMECH', 'FGTNWASTELND', 'THEBOUNTY', 'GHOSTPILOT', 'MECHRUNNERS', 'CRUSADECARD', 'REVENGECARD', 'DEVSTATCARD', 'THEORIGIN', 'LASTLIGHT'];
 
 <site-layout>
   <@title>
@@ -19,18 +12,7 @@ class {
         Render app data here, passing card name as parameter
     </if>
     <else>
-    <div class="row" style="padding-top:10px;">
-        <for (card in state.cards)>
-            <div class="col-xs-4 col-sm-3" style="padding-bottom:10px">
-                <div class="text-center">
-                    <a href="/aor?card="+card> 
-                        <img class="img-responsive" src="http://sogdb.com/images/aorimages/"+card+".jpg"/>
-                        <div class="caption text-center">${card}</div>
-                    </a>
-                </div>
-            </div>
-        </for>
-    </div>
+        <card-binder cards=cards src="http://sogdb.com/images/aorimages/"/>
     </else>
     </div>
   </@content>
