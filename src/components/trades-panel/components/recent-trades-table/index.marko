@@ -1,12 +1,4 @@
-var moment = require('moment');
-var recentTrades = input.recentTrades.sort(function(a, b) {
-                                       a = new Date(a.time);
-                                       b = new Date(b.time);
-                                       return a>b ? -1 : a<b ? 1 : 0;
-                                     });
-
-
-
+import {formatDateMDY,abbreviateAsset} from '../../../util/helperfunctions';
 <table class="table table-striped table-hover table-condensed">
     <caption><strong>Filled Orders</strong></caption>
     <thead>
@@ -15,23 +7,23 @@ var recentTrades = input.recentTrades.sort(function(a, b) {
             <th class="text-center">Type</th>
             <th class="text-center">Qty</th>
             <th class="text-center">Asset</th>
-            <th class="text-center">Price</th>
+            <th class="text-center">Amount</th>
         </tr>
     </thead>
     <tbody>
-            <for(trade in recentTrades.slice(0,8))>
+            <for(trade in input.recentTrades.slice(0,8))>
                <tr> 
                     <td align="center">
-                        ${moment(trade.time, "YYYY-MM-DDTHH:mm:ssZ").format('M/DD/YY')}
+                        ${formatDateMDY(trade.time)}
                     </td>
                     <td align="center" class={'success': trade.type == 'buy', 'danger': trade.type == 'sell'}>
                         ${trade.type}
                     </td>
                     <td align="center">
-                        ${trade.qty}
+                        ${trade.asset_qty}
                     </td>
                     <td align="center">
-                        ${trade.payment}
+                        ${abbreviateAsset(trade.payment)}
                     </td>
                     <td align="center">
                         ${trade.payment_qty}

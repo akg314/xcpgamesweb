@@ -1,3 +1,17 @@
+import {abbreviateAsset} from '../../../util/helperfunctions';
+//sort from highest to lowest buy order prices
+$ var sortedBuyOrders = input.buyOrders.sort(function(a,b) {
+    a = a.give_remaining/a.get_remaining;
+    b = b.give_remaining/b.get_remaining;
+    return a>b ? -1 : a<b ? 1 : 0;
+})
+//sort from lowest to highest sell order prices
+$ var sortedSellOrders = input.sellOrders.sort(function(a,b) {
+    a = a.get_remaining/a.give_remaining;
+    b = b.get_remaining/b.give_remaining;
+    return a<b ? -1 : a>b ? 1 : 0;
+});
+;
 <div id="open-buy-orders" class="col-xs-12 col-sm-6">
     <table class="table table-condensed table-striped table-hover" style="width:100%;">
         <caption><strong>Open Buy Orders</strong></caption>
@@ -5,21 +19,21 @@
             <tr>
                 <th class="text-center">Quantity</th>
                 <th class="text-center">Currency</th>
-                <th class="text-center">Price</th>
+                <th class="text-center">Amount</th>
                 <th class="text-center">Expiry block</th>
             </tr>  
         </thead>
         <tbody>
-        <for (order in input.buyOrders)>
+        <for (order in sortedBuyOrders)>
         <tr class="success">
             <td align="center">
                 ${order.get_remaining}
             </td>
             <td align="center">
-                ${order.give_asset}
+                ${abbreviateAsset(order.give_asset)}
             </td>
             <td align="center">
-                ${order.give_remaining }
+                ${order.give_remaining}
             </td>
             <td align="center">
                 ${order.block_index + order.expiration}
@@ -36,18 +50,18 @@
             <tr>
                 <th class="text-center">Quantity</th>
                 <th class="text-center">Currency</th>
-                <th class="text-center">Price</th>
+                <th class="text-center">Amount</th>
                 <th class="text-center">Expiry block</th>
             </tr>  
         </thead>
         <tbody>
-        <for (order in input.sellOrders)>
+        <for (order in sortedSellOrders)>
         <tr class="danger">
             <td align="center">
                 ${order.give_remaining}
             </td>
             <td align="center">
-                ${order.get_asset}
+                ${abbreviateAsset(order.get_asset)}
             </td>
             <td align="center">
                 ${order.get_remaining }

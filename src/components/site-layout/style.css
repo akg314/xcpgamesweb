@@ -22,7 +22,7 @@ header {
 
 .mynavbar li {
     float: left;
-    font-size:18px;
+    font-size:20px;
 }
 
 .mynavbar li a {
@@ -49,7 +49,7 @@ header {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: antiquewhite;
     display: block;
     transition: 0.3s;
 }

@@ -1,7 +1,9 @@
 $ var XMLHttpRequest = require('xhr2');
+import {formatDateMD,capitalize,round,abbreviateAsset} from '../util/helperfunctions';
+$ var imgsrc = "http://sogdb.com/images/sogcards/"
 $ var cardsPromise = new Promise(function(resolve,reject) {
     var request = new XMLHttpRequest();
-    request.open('GET', "http://aquabox/cards");
+    request.open('GET', "http://aquabox/trades");
     request.responseType = 'blob';
     // When the request loads, check whether it was successful
     request.onload = function() {
@@ -17,24 +19,30 @@ $ var cardsPromise = new Promise(function(resolve,reject) {
     request.send();
 });
 
-<div class="row text-center" style="padding-top:10px;">
-	<h2 style="margin-top:10px">Pick a card below...</h2>
-			<h5>Loading cards...</h5>
-	<await(cards from cardsPromise)>
-        <for (card in cards)>
+<div class="container">
+<div class="row text-center" style="padding-top:10px;background-color:white">
+	<await(trades from cardsPromise)>
+        <for (trade in trades)>
             <div class="col-xs-6 col-sm-4 col-md-3" style="padding-bottom:10px">
-                <div class="cardBinderItem">
-                    <a href="/"+input.gameId+"/cards?card="+card> 
-                        <img class="img-responsive" src=input.imgsrc+card+".jpg"/>
-                        <div class="caption" style="word-wrap:break-word"><strong>${card}</strong></div>
-                    </a>
+                <div class="recentTradesItem">
+                    <a href="/sog/cards?card="+trade.asset> 
+                        <img class="img-responsive" src=imgsrc+trade.asset+".jpg"/>
+                    </a>    
+                    <div class="caption" style="word-wrap:break-word">
+                        <p><span class={"text-success": trade.type == 'buy', "text-danger": trade.type == "sell"}><strong>${capitalize(trade.type)}</strong></span> ${trade.asset}</p>
+                        <p><strong>${round(trade.asset_qty,3)}@ ${round(trade.payment_qty/trade.asset_qty,1)} ${abbreviateAsset(trade.payment)}/cd &mdash; ${formatDateMD(trade.time)}</strong></p>
+                    </div>
                 </div>
             </div>
         </for>
 	</await>
 </div>
-
-style {
+</div>
+style {        
+    .recentTradesItem p {
+        padding:0px;
+        margin:0px;
+    }
 	div.cardBinderItem {
 		padding: 5px;
 	}
@@ -54,6 +62,5 @@ style {
 		.container {
 			padding:1px ! important;
 		}
-	}
-	
+	}	
 }
