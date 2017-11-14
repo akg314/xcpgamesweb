@@ -1,0 +1,112 @@
+class {
+    onCreate() {
+        this.state = {
+                loading: true, allLoading: true, cards: 'SATOSHICARD', owned: '', address: ''
+        }
+        console.log('component all cards created');
+    }
+    getCards() {
+        console.log('getting all cards');
+        var XMLHttpRequest = require('xhr2');
+        var request = new XMLHttpRequest();
+        var state = this.state;
+        request.onreadystatechange = function() {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    console.log("api request received all cards");
+                    console.log(request.response);
+                    state.cards = request.response;
+                    state.allLoading = false;
+                } else {
+                    console.log('error with http request to retrieve all cards');
+                }
+            }
+        }
+        request.open('GET', "http://aquabox/cards");
+        request.responseType = 'json';
+        request.send();
+    }
+    onMount() {
+        this.getCards();
+    }
+       
+    getOwnedAssets() {
+        var XMLHttpRequest = require('xhr2');
+        var request = new XMLHttpRequest();
+        var state = this.state;
+        request.onreadystatechange = function() {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    console.log("api request received");
+                    state.owned = request.response;
+                    state.loading = false; 
+                } else {
+                    console.log('error with http request to get owned assets in wallet-all component');
+                }
+            }
+           
+        }
+        request.open('GET', "http://aquabox/wallet/"+this.state.address);
+        request.responseType = 'json';
+        request.send();
+    }
+    //method to execute on address update
+    displayWalletInfo() {
+        //update loading state to true when displaying a new wallet
+        this.state.loading = true;
+        console.log('wallet info method');
+        this.getOwnedAssets();
+    }
+    //update cards shown when the address is changed
+    onInput(input) {
+            this.state.address = input.address;
+            this.displayWalletInfo();
+     }
+}
+<div class="row" style="padding-top:10px;">
+    <if(state.allLoading==false)>
+        <for (card in state.cards.sort())>
+            <div class="col-xs-6 col-sm-4 col-md-3 text-center" style="padding-bottom:10px">
+                <div class="cardBinderItem">
+                    <a href="/"+input.gameId+"/cards?card="+card> 
+                        <img class={"img-responsive": true, "fadedImage": typeof state.owned[String(card)]=="undefined" || state.owned[String(card)] == 0} src=input.imgsrc+card+".jpg"/>
+                        <if (state.owned[String(card)] > 0)>
+                        <div class="caption" style="word-wrap:break-word"><strong>${state.owned[String(card)]} ${card}</strong></div>
+                        </if>
+                        <else>  
+                            <div class="caption" style="word-wrap:break-word"><strong>${card}</strong></div>  
+                        </else>
+                    </a>
+                </div>
+            </div>
+        </for>
+    </if>
+</div>
+
+style {
+    .fadedImage {
+        opacity: .4;
+        filter: alpha(opacity=40);
+    }
+	div.cardBinderItem {
+		padding: 5px;
+	    font-size:14px;
+    }
+	.cardBinderItem .caption {
+		color: black
+	}
+	.cardBinderItem:hover {
+		background-color: #286090;
+	}
+	.cardBinderItem:hover .caption {
+		color: #ffe990
+	}
+	@media screen and (max-width: 480px) {
+		.caption {
+			font-size: 12px ! important
+		}
+		.container {
+			padding:1px ! important;
+		}
+	}
+}

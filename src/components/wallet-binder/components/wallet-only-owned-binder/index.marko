@@ -1,0 +1,88 @@
+$ var address;
+class {
+        onCreate() {
+            this.state = {
+                loading: true, cards: '', address: ''
+            }
+            console.log('component created');
+        }
+        getCardData() {
+        var XMLHttpRequest = require('xhr2');
+        var request = new XMLHttpRequest();
+        var state = this.state;
+        request.onreadystatechange = function() {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    console.log("api request received");
+                    state.cards = request.response;
+                    state.loading = false; 
+                } else {
+                    console.log('error with http request in wallet-only-owned component');
+                }
+            }
+           
+        }
+        request.open('GET', "http://aquabox/wallet/"+this.state.address);
+        request.responseType = 'json';
+        request.send();
+    }
+    //method to execute on address update
+    displayWalletInfo() {
+        //update loading state to true when displaying a new wallet
+        this.state.loading = true;
+        this.getCardData();
+        console.log('wallet info method executed');
+    }
+    //update cards shown when the address is changed
+    onInput(input) {
+            this.state.address = input.address;
+            this.displayWalletInfo();
+    }
+}
+
+<div class="row" style="padding-top:10px;">
+        <!--only render if card loaded-->
+        <if(state.loading == true)>
+            <div>Waiting for wallet to load...</div>
+        </if>
+        <else>
+        <for (card,number in state.cards)>
+            <div class="col-xs-6 col-sm-4 col-md-3 text-center" style="padding-bottom:10px">
+                <div class="cardBinderItem">
+                    <a href="/"+input.gameId+"/cards?card="+card> 
+                        <img class="img-responsive" src=input.imgsrc+card+".jpg"/>
+                        <div class="caption" style="word-wrap:break-word"><strong>${number} ${card}</strong></div>
+                    </a>
+                </div>
+            </div>
+        </for>
+	    </else>
+</div>
+
+style {
+    .fadedImage {
+        opacity: .4;
+        filter: alpha(opacity=40);
+    }
+	div.cardBinderItem {
+		padding: 5px;
+	    font-size:14px;
+    }
+	.cardBinderItem .caption {
+		color: black
+	}
+	.cardBinderItem:hover {
+		background-color: #286090;
+	}
+	.cardBinderItem:hover .caption {
+		color: #ffe990
+	}
+	@media screen and (max-width: 480px) {
+		.caption {
+			font-size: 12px ! important
+		}
+		.container {
+			padding:1px ! important;
+		}
+	}
+}

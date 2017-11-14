@@ -1,14 +1,14 @@
 $ var XMLHttpRequest = require('xhr2');
 $ var cardsPromise = new Promise(function(resolve,reject) {
     var request = new XMLHttpRequest();
-    request.open('GET', "http://aquabox/cards");
-    request.responseType = 'blob';
+    request.open('GET', "http://aquabox/"+input.collection+"/cards");
+    request.responseType = 'json';
     // When the request loads, check whether it was successful
     request.onload = function() {
         console.log('executing promise check');
         if (request.status === 200) {
         // If successful, resolve the promise by passing back the request response
-          resolve(JSON.parse(request.response));
+          resolve(request.response);
         } else {
         // If it fails, reject the promise with a error message
           reject(Error('Cards didn\'t load successfully; error'));
@@ -18,13 +18,12 @@ $ var cardsPromise = new Promise(function(resolve,reject) {
 });
 
 <div class="row text-center" style="padding-top:10px;">
-	<h2 style="margin-top:10px">Pick a card below...</h2>
-			<h5>Loading cards...</h5>
+	<h2 style="margin-top:2px">Browse all cards</h2>
 	<await(cards from cardsPromise)>
         <for (card in cards)>
             <div class="col-xs-6 col-sm-4 col-md-3" style="padding-bottom:10px">
                 <div class="cardBinderItem">
-                    <a href="/"+input.gameId+"/cards?card="+card> 
+                    <a href="/"+input.collection+"/cards/"+card> 
                         <img class="img-responsive" src=input.imgsrc+card+".jpg"/>
                         <div class="caption" style="word-wrap:break-word"><strong>${card}</strong></div>
                     </a>
@@ -55,5 +54,4 @@ style {
 			padding:1px ! important;
 		}
 	}
-	
 }
