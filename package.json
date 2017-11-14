@@ -15,15 +15,14 @@
     "prettier": "^1.5.2"
   },
   "dependencies": {
-    "axios": "^0.17.0",
-    "bootstrap-select": "^1.12.4",
-    "choices.js": "^3.0.2",
-    "coffeekraken-s-select-component": "^1.0.1",
+    "jquery": "^3.2.1",
     "jsdom": "^11.3.0",
-    "lasso-image": "^1.0.12",
     "marko": "^4.2.4",
     "marko-starter": "^1.2.1",
-    "moment": "^2.19.1"
+    "moment": "^2.19.1",
+    "query-string": "^5.0.1",
+    "wallet-address-validator": "^0.1.1",
+    "xhr2": "^0.1.4"
   },
   "scripts": {
     "start": "marko-starter server",
