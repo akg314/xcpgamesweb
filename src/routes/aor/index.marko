@@ -1,19 +1,10 @@
-$ var cards = ['ROGUEMECH', 'FGTNWASTELND', 'THEBOUNTY', 'GHOSTPILOT', 'MECHRUNNERS', 'CRUSADECARD', 'REVENGECARD', 'DEVSTATCARD', 'THEORIGIN', 'LASTLIGHT'];
-
-<site-layout>
-  <@title>
-    <strong>Age of Rust</strong>
-  </@title>
-  <@content>
-  <div class="container" style="background:white;padding:10px">
-  <p>The card queried is ${input.query.card}</p>
-    <if(input.query.card)>
-    <a href="/aor" class="btn btn-primary btn-lg active" role="button">Back to all cards</a>
-        Render app data here, passing card name as parameter
-    </if>
-    <else>
-        <card-binder cards=cards src="http://sogdb.com/images/aorimages/"/>
-    </else>
-    </div>
-  </@content>
+<site-layout propertyName="aor">
+    <@title>
+        Welcome to the Age of Rust!
+    </@title>
+    <@content>
+        <div class="container" style="background:white;padding:15px">
+            "Welcome to the Age of Rust Game!"
+        </div>
+    </@content>
 </site-layout>
