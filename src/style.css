@@ -1,0 +1,10 @@
+/*------------*/
+/*Homepage specific styles*/
+.titleCaption {
+    font-size:24px;
+    color:black
+}
+@media screen and (min-width:768px) {
+    .headerCaption {font-size: 24px ! important};
+    .titleCaption {font-size: 30px;}
+}
