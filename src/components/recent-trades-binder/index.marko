@@ -1,42 +1,46 @@
+//INPUT required: imgsrc (for card pictures),collection(for link to card info page and API trade data call)
+//library for handling API requests
 $ var XMLHttpRequest = require('xhr2');
+
+//helper functions for formatting trade tables
 import {formatDateMD,capitalize,round,abbreviateAsset} from '../util/helperfunctions';
-$ var imgsrc = "http://sogdb.com/images/sogcards/"
-$ var cardsPromise = new Promise(function(resolve,reject) {
+
+//get trades data from API
+$ var tradesPromise = new Promise(function(resolve,reject) {
     var request = new XMLHttpRequest();
-    request.open('GET', "http://aquabox/trades");
-    request.responseType = 'blob';
+    request.open('GET', "http://aquabox/"+input.collection+"/trades");
+    request.responseType = 'json';
     // When the request loads, check whether it was successful
     request.onload = function() {
         console.log('executing promise check');
         if (request.status === 200) {
         // If successful, resolve the promise by passing back the request response
-          resolve(JSON.parse(request.response));
+          resolve(request.response);
         } else {
         // If it fails, reject the promise with a error message
-          reject(Error('Cards didn\'t load successfully; error'));
+          reject(Error('Trades didn\'t load successfully; error'));
         }
     };
     request.send();
 });
 
-<div class="container">
-<div class="row text-center" style="padding-top:10px;background-color:white">
-	<await(trades from cardsPromise)>
+<div class="row text-center" style="padding-top:10px">
+    <await(trades from tradesPromise)>
         <for (trade in trades)>
             <div class="col-xs-6 col-sm-4 col-md-3" style="padding-bottom:10px">
                 <div class="recentTradesItem">
-                    <a href="/sog/cards/"+trade.asset> 
-                        <img class="img-responsive" src=imgsrc+trade.asset+".jpg"/>
-                    </a>    
+                    <a href="/"+input.collection+"/cards/"+trade.asset> 
+                        <img class="img-responsive" src=input.imgsrc+trade.asset+".jpg"/>
+                    </a> 
+                    <!--card caption with trade details description (quantity, date, unit price)-->   
                     <div class="caption" style="word-wrap:break-word">
                         <p><span class={"text-success": trade.type == 'buy', "text-danger": trade.type == "sell"}><strong>${capitalize(trade.type)}</strong></span> ${trade.asset}</p>
-                        <p><strong>${round(trade.asset_qty,3)}@ ${round(trade.payment_qty/trade.asset_qty,1)} ${abbreviateAsset(trade.payment)}/cd &mdash; ${formatDateMD(trade.time)}</strong></p>
+                        <p><strong>${formatDateMD(trade.time)} &mdash; ${round(trade.asset_qty,3)}@ ${round(trade.payment_qty/trade.asset_qty,1)} ${abbreviateAsset(trade.payment)}/cd</strong></p>
                     </div>
                 </div>
             </div>
         </for>
-	</await>
-</div>
+    </await>
 </div>
 style {        
     .recentTradesItem p {
@@ -55,6 +59,7 @@ style {
 	.cardBinderItem:hover .caption {
 		color: #ffe990
 	}
+    //keep font small on small viewport so the card names fit on one line
 	@media screen and (max-width: 480px) {
 		.caption {
 			font-size: 12px ! important

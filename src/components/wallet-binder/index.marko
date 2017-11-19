@@ -1,31 +1,43 @@
+//INPUT required: collection, imgsrc url
+$ var collection = input.collection;
+$ var imgsrc = input.imgsrc;
 class {
     onCreate() {
-        //default address to show no cards owned
-        this.state = {address: "CounterpartyXXXXXXXXXXXXXXXUWLpVr"}
+        this.state = {address:"" }
     }
+    onMount() {
+        this.state.address = localStorage.address || "CounterpartyXXXXXXXXXXXXXXXUWLpVr";
+        console.log(this.state.address);
+    }
+    //Update address state when address-selector emits address-select
     updateWalletDisplay(address) {
         this.state.address = address;
-        console.log(address);
+        localStorage.address = address;
     }
 }
-
-<div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#menu1">All Cards</a></li>
-            <li><a data-toggle="tab" href="#menu2">Only My Cards</a></li>
-        </ul>
+<if(state.address.length > 0)>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#allcards">All Cards</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#mycards">Only My Cards</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+            <address-selector address=state.address on-address-select('updateWalletDisplay')/>
+        </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-8">
-        <address-selector on-address-select('updateWalletDisplay')/>
+    <div class="tab-content">
+        <!--default to allcards tab pane active-->
+        <div id="allcards" class="tab-pane fade in active">
+            <wallet-all-cards address=state.address collection=collection imgsrc=imgsrc/>
+        </div>
+        <div id="mycards" class="tab-pane fade">
+            <wallet-only-owned-binder address=state.address collection=collection imgsrc=imgsrc/>
+        </div>
     </div>
-</div>
-<div class="tab-content">
-    <div id="menu1" class="tab-pane fade in active">
-        <wallet-all-cards address=state.address gameId="sog" imgsrc="http://sogdb.com/images/sogcards/"/>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-        <wallet-only-owned-binder address=state.address imgsrc="http://sogdb.com/images/sogcards/"/>
-    </div>
-</div>
-
+</if>

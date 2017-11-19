@@ -1,5 +1,7 @@
 import {abbreviateAsset} from '../../../util/helperfunctions';
-//sort from highest to lowest buy order prices
+
+//----Sorting functions for open order tables
+//sort from high to low buy order prices
 $ var sortedBuyOrders = input.buyOrders.sort(function(a,b) {
     a = a.give_remaining/a.get_remaining;
     b = b.give_remaining/b.get_remaining;
@@ -11,7 +13,7 @@ $ var sortedSellOrders = input.sellOrders.sort(function(a,b) {
     b = b.get_remaining/b.give_remaining;
     return a<b ? -1 : a>b ? 1 : 0;
 });
-;
+
 <div id="open-buy-orders" class="col-xs-12 col-sm-6">
     <table class="table table-condensed table-striped table-hover" style="width:100%;">
         <caption><strong>Open Buy Orders</strong></caption>
@@ -24,22 +26,25 @@ $ var sortedSellOrders = input.sellOrders.sort(function(a,b) {
             </tr>  
         </thead>
         <tbody>
-        <for (order in sortedBuyOrders)>
-        <tr class="success">
-            <td align="center">
-                ${order.get_remaining}
-            </td>
-            <td align="center">
-                ${abbreviateAsset(order.give_asset)}
-            </td>
-            <td align="center">
-                ${order.give_remaining}
-            </td>
-            <td align="center">
-                ${order.block_index + order.expiration}
-            </td>
-        </tr>
-        </for>
+            <if(input.buyOrders.length == 0)>
+                <tr style="background-color:white"><th colspan="4" class="text-center">No Open Buy Orders</th></tr>
+            </if>
+            <for(i,order in sortedBuyOrders)>
+                <tr class={"success": i % 2 == 0}>
+                    <td align="center">
+                        ${order.get_remaining}
+                    </td>
+                    <td align="center">
+                        ${abbreviateAsset(order.give_asset)}
+                    </td>
+                    <td align="center">
+                        ${order.give_remaining}
+                    </td>
+                    <td align="center">
+                        ${order.block_index + order.expiration}
+                    </td>
+                </tr>
+            </for>
         </tbody>   
     </table>
 </div>
@@ -55,23 +60,25 @@ $ var sortedSellOrders = input.sellOrders.sort(function(a,b) {
             </tr>  
         </thead>
         <tbody>
-        <for (order in sortedSellOrders)>
-        <tr class="danger">
-            <td align="center">
-                ${order.give_remaining}
-            </td>
-            <td align="center">
-                ${abbreviateAsset(order.get_asset)}
-            </td>
-            <td align="center">
-                ${order.get_remaining }
-            </td>
-            <td align="center">
-                ${order.block_index + order.expiration}
-            </td>
-        </tr>
-        </for>
+            <if(input.sellOrders.length == 0)>
+                <tr style="background-color:white"><th colspan="4" class="text-center">No Open Sell Orders</th></tr>
+            </if>
+            <for (i,order in sortedSellOrders)>
+                <tr class={"danger": i % 2 == 0}>
+                    <td align="center">
+                        ${order.give_remaining}
+                    </td>
+                    <td align="center">
+                        ${abbreviateAsset(order.get_asset)}
+                    </td>
+                    <td align="center">
+                        ${order.get_remaining }
+                    </td>
+                    <td align="center">
+                        ${order.block_index + order.expiration}
+                    </td>
+                </tr>
+            </for>
         </tbody>   
     </table>
 </div>
-    

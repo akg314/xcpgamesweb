@@ -41,7 +41,6 @@ header {
     left: 0;
     background-color: #111;
     overflow-x: hidden;
-    transition: 0.5s;
     padding-top: 60px;
 }
 
@@ -51,7 +50,6 @@ header {
     font-size: 25px;
     color: antiquewhite;
     display: block;
-    transition: 0.3s;
 }
 
 .sidenav a:hover {
@@ -67,7 +65,7 @@ header {
 }
 
 #main {
-    transition: margin-left .5s;
+    transition: margin-left .001s;
     padding: 16px;
 }
 

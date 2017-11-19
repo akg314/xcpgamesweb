@@ -9,12 +9,14 @@ exports.round = function(value, decimals) {
 exports.abbreviateAsset = function(string) {
     if(string == "BITCRYSTALS") {
         return "bcy"
-    } else { 
+    } else if (string == "RUSTBITS") { 
+        return "rustbits"
+    } else {
         return string
     }
 }
 exports.formatDateMD = function(date) {
-    return moment(date, "YYYY-MM-DDTHH:mm:ssZ").format('M-DD');
+    return moment(date, "YYYY-MM-DDTHH:mm:ssZ").format('M/DD');
 }
 exports.formatDateMDY = function(date) {
     return moment(date, "YYYY-MM-DDTHH:mm:ssZ").format('M-DD-YY');

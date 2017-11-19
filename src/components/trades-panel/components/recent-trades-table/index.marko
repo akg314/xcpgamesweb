@@ -11,25 +11,28 @@ import {formatDateMDY,abbreviateAsset} from '../../../util/helperfunctions';
         </tr>
     </thead>
     <tbody>
-            <for(trade in input.recentTrades.slice(0,8))>
-               <tr> 
-                    <td align="center">
-                        ${formatDateMDY(trade.time)}
-                    </td>
-                    <td align="center" class={'success': trade.type == 'buy', 'danger': trade.type == 'sell'}>
-                        ${trade.type}
-                    </td>
-                    <td align="center">
-                        ${trade.asset_qty}
-                    </td>
-                    <td align="center">
-                        ${abbreviateAsset(trade.payment)}
-                    </td>
-                    <td align="center">
-                        ${trade.payment_qty}
-                    </td>
-                </tr>
-            </for>
+        <if(input.recentTrades.length == 0)>
+            <tr style="background-color:white"><th colspan="4" class="text-center">No Recent Trades</th></tr>
+        </if>
+        <for(trade in input.recentTrades.slice(0,8))>
+            <tr> 
+                <td align="center">
+                    ${formatDateMDY(trade.time)}
+                </td>
+                <td align="center" class={'success': trade.type == 'buy', 'danger': trade.type == 'sell'}>
+                    ${trade.type}
+                </td>
+                <td align="center">
+                    ${trade.asset_qty}
+                </td>
+                <td align="center">
+                    ${abbreviateAsset(trade.payment)}
+                </td>
+                <td align="center">
+                    ${trade.payment_qty}
+                </td>
+            </tr>
+        </for>
     </tbody>         
 </table>
 
