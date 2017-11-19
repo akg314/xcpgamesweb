@@ -1,68 +1,55 @@
-static {
-    var cardData = [{
-    "id": 'ROGUEMECH',
-    "specialAbility": "20% damage bonus to all attacks"
-    },
-    {
-    "id": 'LASTLIGHT',
-    "specialAbility": "something cool"
-    },
-    ]
-}
-<div class="row" style="padding:15px">
+//INPUT REQUIRED: imgsrc, cardInfo
+
+$ var cardInfo = input.cardInfo;
+//get attributes for ability-table component
+$ var attributes = cardInfo.attributes;
+//boolean check if rare access card
+$ var isRare = (attributes.filter(x => x.name === "Rare Gold Series").length > 0);
+
+<div class="row">
     <div class="col-xs-12 col-sm-4 text-center" style="padding-left:10px">
-        <img class="img-center center-block" style="max-height:310px" src="https://static1.squarespace.com/static/59a5a8fb3e00be18e8291a8a/t/59a6ccbc03596ef5eb2a6d83/1504200292069/card001.jpg?format=500w">
+        <img class="img-responsive" style="max-height:350px;display:inline" src=input.imgsrc+cardInfo.assetId+".jpg"/>
     </div>
     <div class="col-xs-12 col-sm-8">
         <div class="row cardInfoRow">
             <div class="col-xs-12 col-sm-8" style="padding-left:10px;">
-                <table class="abilityTable">
-                    <tr>
-                        <th colspan="2" class="text-center" id="specialAbilityText">20% damage bonus to all attacks</th>
-                    </tr>
-                    <tr>
-                        <td align="center" class="cardTraits">
-                            <strong></strong>
-                        </td>
-                        <td align="center" class="cardTraits">
-                            <strong>Attack</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center" class="traitValues">
-                            <strong>+12</strong>
-                        </td>
-                        <td align="center" class="traitValues">
-                            <strong>+4</strong>
-                        </td>
-                    </tr>
-                </table>
+                <if(!isRare)>
+                    <ability-table attributes=attributes assetId=cardInfo.assetId/>
+                </if>
+                <else>
+                    <rare-access-table attributes=attributes/>
+                </else>                        
             </div>
 <!--Cards Available for sm viewport and up-->
             <div class="col-xs-4 smAvailableTable">
-                <table>
+                <table class="table-border">
                     <tr>
                         <th class="text-center">Cards available:</th>
                     </tr>
                     <tr>
-                        <td align="center" style="font-size:26px"><strong>1200</strong></td>
+                        <td align="center" style="font-size:26px"><strong>${input.cardInfo.quantity}</strong></td>
                     </tr>
                 </table>
             </div>
 <!--Cards Available for xs viewport-->
             <div class="col-xs-12 xsAvailableTable" >
-                <p class="text-center">Cards available:<br/><strong>1200</strong></p>
+                <p class="text-center">
+                    Cards available:<br/>
+                    <strong>${input.cardInfo.quantity}</strong>
+                </p>
             </div>
         </div>
 <!--Card Description for md and larger viewport-->
         <div class="row cardDescriptionMd">
-            <span><br/>The mechs were originally created to repair colony ships on long multi-generational voyages across the galaxy. In a dark twist of fate, the mechs broke down over the eons but eventually figured out how to repair themselves. Once the parts to repair each other dried up, they turned to the sleeping colony ships and stripped them while the colonists died in their sleep. As some humans managed to defend themselves, the mechs figured out how to free themselves from the safety protocols that kept humans safe. Rogue Mechs then turned into lethal killing machines and now run amok throughout the galaxy.</span>
+            <div class="cardDescriptionMd descriptionDiv">
+                ${input.cardInfo.description}
+            </div>
         </div>
-    </div>
 <!--Card Description for xs and sm viewport-->
-    <div class="row cardDescriptionSmall">
-        <div class="cardDescriptionSmall descriptionDiv">
-          The mechs were originally created to repair colony ships on long multi-generational voyages across the galaxy. In a dark twist of fate, the mechs broke down over the eons but eventually figured out how to repair themselves. Once the parts to repair each other dried up, they turned to the sleeping colony ships and stripped them while the colonists died in their sleep. As some humans managed to defend themselves, the mechs figured out how to free themselves from the safety protocols that kept humans safe. Rogue Mechs then turned into lethal killing machines and now run amok throughout the galaxy. 
+        <div class="row cardDescriptionSmall">
+            <div class="cardDescriptionSmall descriptionDiv">
+                ${input.cardInfo.description}
+            </div>
         </div>
     </div>
 </div>

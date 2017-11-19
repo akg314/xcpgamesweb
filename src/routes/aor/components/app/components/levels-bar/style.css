@@ -1,12 +1,9 @@
-.container {
-    background-color: white;
-}
-
-th {
+/*table border classes for ability table and cards available table*/
+.table-border th {
     border-bottom: 1px solid #ddd;
 }
 
-td {
+.table-border td {
     border-top: 1px solid #ddd;
 }
 
@@ -24,19 +21,19 @@ td {
 /*----------------Ability Table Styles-------*/
 .abilityTable {
     width:100%;
+    margin:auto;
 }
 
 /*special coloring for ability text */
 #specialAbilityText {
-    color: #20124D;
     font-size:20px;
-    padding-right:15px; /*will give entire table this right padding*/
+    /*padding-right:15px; /*will give entire table this right padding*/
+    padding-bottom:10px
+}
+table.abilityTable th {
     padding-bottom:10px
 }
 
-table.abilityTable tr {
-    border-right:1px solid #eceeef;
-}
 
 table.abilityTable td.cardTraits {
     padding:5px;
@@ -52,8 +49,8 @@ table.abilityTable td.traitValues {
 .cardDescriptionMd {
     position:relative;
     left:0;
-    bottom:15px;
-    padding-left:10px;
+    bottom:0px;
+    padding-right:15px;
     max-height:200px;
     overflow:auto;
     z-index:0
@@ -79,7 +76,9 @@ table.abilityTable td.traitValues {
         font-size:18px; /*decrease for small viewport*/
     }
     .xsAvailableTable {
+        border-top: 1px solid #ddd;
         font-size:18px;
+        padding-top:5px;
     }
     .smAvailableTable {
         display: none;
@@ -92,8 +91,14 @@ table.abilityTable td.traitValues {
 @media (min-width: 768px) {
     .xsAvailableTable {
         display: none;
+    } 
+    table.abilityTable tr {
+        border-right:1px solid #eceeef;
     }
     .cardDescriptionSmall {
         display: none;
+    }
+    .cardInfoRow {
+        padding-bottom:25px
     }
 }

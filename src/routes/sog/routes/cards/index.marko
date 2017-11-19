@@ -1,16 +1,22 @@
-<site-layout propertyName="sog">
+//TODO: change image source url, use history API for back button
+<site-layout collection="sog">
     <@title>
         Spells of Genesis
     </@title>
     <@content>
-        <div class="container" style="background:white;padding:15px">
-        <if (input.params.assetId.length > 0)>       
-                <a href="/sog/cards/" class="btn btn-primary btn-lg active" data-spy="affix" data-offset-top="20" style="z-index:3" role="button"><span class="glyphicon glyphicon-menu-left"></span>Back</a>
-                <app card=input.params.assetId/>
-                </if>
-                <else>
-				    <card-binder gameId="sog" imgsrc="http://sogdb.com/images/sogcards/"/>
-                </else>
-        </div>
+        <!--back to previous page button TODO: use history API-->       
+        <!--<div style='padding-bottom:10px'>
+        <a href="/sog" class="btn btn-primary btn-lg active" data-spy="affix-top" data-offset-top="20" style="z-index:3" role="button">
+        <span class="glyphicon glyphicon-menu-left"></span>Back
+        </a>
+        </div>-->
+        <app collection="sog" card=input.params.assetId/>
     </@content>
 </site-layout>
+style { .btn {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 20; /* Position the navbar at the top of the page */
+}
+}

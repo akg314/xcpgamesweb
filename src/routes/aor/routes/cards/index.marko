@@ -1,16 +1,12 @@
-<site-layout propertyName="aor">
+<site-layout collection="aor">
     <@title>
         Age of Rust
     </@title>
     <@content>
-        <div class="container" style="background:white;padding:15px">
-        <if (input.params.assetId.length > 0)>       
-                <a href="/aor/cards/" class="btn btn-primary btn-lg active" data-spy="affix" data-offset-top="20" style="z-index:3" role="button"><span class="glyphicon glyphicon-menu-left"></span>Back</a>
-                <app card=input.params.assetId/>
-                </if>
-                <else>
-				    <card-binder collection="aor" imgsrc="http://sogdb.com/images/aorimages/"/>
-                </else>
-        </div>
+            <!--<a href="/aor/cards/" class="btn btn-primary btn-lg active" data-spy="affix" data-offset-top="20" style="z-index:3" role="button">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                Back
+            </a>-->
+            <app collection="aor" card=input.params.assetId/>
     </@content>
 </site-layout>

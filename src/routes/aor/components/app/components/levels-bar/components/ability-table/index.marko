@@ -1,0 +1,30 @@
+//INPUT REQUIRED: attributes,assetId
+//colors for special ability text
+$ var attributes = input.attributes;
+$ var specialAbilityColors = {FGTNWASTELND:"#783F04",REVENGECARD:"#CF6DFE",THEBOUNTY:"#204E3D",THEORIGIN:"#b8860b",MECHRUNNERS:"#210F80",ROGUEMECH:"#20124D",DEVSTATCARD:"#1F4203",LASTLIGHT:"#b8860b",GHOSTPILOT:"red"};
+//parse 2 abilities for top row of abilityTable
+$ var abilities = attributes.filter( x => x.name != "Special");
+//parse special ability
+$ var special = attributes.find(x => x.name === 'Special').value;
+
+<table class="abilityTable table-border">
+    <tr>
+        <th colspan="2" class="text-center" id="specialAbilityText" style={color: specialAbilityColors[input.assetId]}>${special}</th>
+    </tr>
+    <tr>
+        <td align="center" class="cardTraits">
+            <strong>${abilities[0].name}</strong>
+        </td>
+        <td align="center" class="cardTraits">
+            <strong>${abilities[1].name}</strong>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" class="traitValues">
+            <strong>${abilities[0].value}</strong>
+        </td>
+        <td align="center" class="traitValues">
+            <strong>${abilities[1].value}</strong>
+        </td>
+    </tr>
+</table>

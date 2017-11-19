@@ -18,7 +18,7 @@ class {
         console.log('getting levels'); 
         var XMLHttpRequest = require('xhr2');
         var request = new XMLHttpRequest();
-        request.open('GET', "http://aquabox/sog/card/"+card);
+        request.open('GET', "http://aquabox/aor/card/"+card);
         request.responseType = 'json';
         var state = this.state;
         request.onload = function() {
@@ -56,7 +56,7 @@ class {
         request.onload = function() {
             if (request.status === 200) {
                 state.trades = request.response;
-                window.chartData= request.response;
+                window.chartData = request.response;
             } else {
             // If it fails, reject the promise with a error message
                 console.log('Trades didn\'t load successfully; error');
@@ -68,8 +68,9 @@ class {
 
 <div>
     <div if(state.levels)>
-        <levels-bar cardInfo=state.levels/>
+        <levels-bar cardInfo=state.levels imgsrc="http://sogdb.com/images/aorimages/"/>
     </div>
+    <hr/>
     <div if(state.orders && state.trades)>
         <trades-panel orders=state.orders trades=state.trades/>
     </div>
