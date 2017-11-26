@@ -2,7 +2,7 @@
 class {
     onCreate() {
         this.state = {
-                loading: true, allLoading: true, cards: '', owned: '', address: '', collection:''
+                apiUrl: '', loading: true, allLoading: true, cards: '', owned: '', address: '', collection:'',
         }
         console.log('wallet-all-cards component created');
     }
@@ -12,6 +12,7 @@ class {
         var XMLHttpRequest = require('xhr2');
         var request = new XMLHttpRequest();
         var state = this.state;
+        var parent = this;
         var collection = collection;
         request.onreadystatechange = function() {
             if (request.readyState === XMLHttpRequest.DONE) {
@@ -19,13 +20,15 @@ class {
                     console.log("api request loaded all cards in wallet-all-cards component");
                     state.cards = request.response;
                     state.allLoading = false;
+                    var allCardCount = Object.keys(request.response).length;
+                    parent.emit("all-card-total", allCardCount);
                     console.log(state.loading);
                 } else {
                     console.log('error with http request to retrieve all cards');
                 }
             }
         }
-        request.open('GET', "http://aquabox/"+state.collection+"/cards");
+        request.open('GET', state.apiUrl+"/"+state.collection+"/cards");
         request.responseType = 'json';
         request.send();
     }
@@ -48,7 +51,7 @@ class {
                 }
             }  
         }
-        request.open('GET', "http://aquabox/"+state.collection+"/wallet/"+state.address+"/cards");
+        request.open('GET', state.apiUrl+"/"+state.collection+"/wallet/"+state.address+"/cards");
         request.responseType = 'json';
         request.send();
     }
@@ -61,10 +64,11 @@ class {
     }
     //calls an update method when address is received by component
     onInput(input) {
+            this.state.apiUrl = input.apiUrl;
             this.state.collection = input.collection; 
             this.state.address = input.address;
             this.displayWalletInfo();
-     }
+     }  
 }
 <div class="row" style="padding-top:10px;">
     <if(state.allLoading == false)>
@@ -72,12 +76,12 @@ class {
             <div class="col-xs-6 col-sm-4 col-md-3 text-center" style="padding-bottom:10px">
                 <div class="cardBinderItem">
                     <a href="/"+input.collection+"/cards/"+card> 
-                        <img class={"img-responsive": true, "fadedImage": typeof state.owned[String(card)]=="undefined" || state.owned[String(card)] == 0} src=input.imgsrc+card+".jpg"/>
+                        <img class={"img-responsive": true, "fadedImage": typeof state.owned[String(card)]=="undefined" || state.owned[String(card)] == 0} src=input.imgsrc+"/"+card+".jpg"/>
                         <if (state.owned[String(card)] > 0)>
-                        <div class="caption" style="word-wrap:break-word"><strong>${state.owned[String(card)]} ${card}</strong></div>
+                        <div class="caption" style="word-wrap:break-word"><strong>${state.owned[String(card)]}x ${card}</strong></div>
                         </if>
                         <else>  
-                            <div class="caption" style="word-wrap:break-word"><strong>${card}</strong></div>  
+                            <div class="caption" style="word-wrap:break-word"><strong><span style="opacity:.6">${card}</span></strong></div>  
                         </else>
                     </a>
                 </div>

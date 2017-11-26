@@ -1,19 +1,27 @@
 //INPUT required: collection, imgsrc url
 $ var collection = input.collection;
 $ var imgsrc = input.imgsrc;
+$ var apiUrl = input.apiUrl;
 class {
     onCreate() {
-        this.state = {address:"" }
+        this.state = {address:"", allCardCount: '', ownedCardCount: '',}
     }
     onMount() {
         this.state.address = localStorage.address || "CounterpartyXXXXXXXXXXXXXXXUWLpVr";
         console.log(this.state.address);
     }
-    //Update address state when address-selector emits address-select
+    //Update address state when address-selector emits address-select, adds to local storage so it is saved for future sesions
     updateWalletDisplay(address) {
         this.state.address = address;
         localStorage.address = address;
     }
+    updateOwnedCardCount(total) {
+        this.state.ownedCardCount = total;
+    }
+    updateAllCardCount(total) {
+        this.state.allCardCount = total;
+    }
+
 }
 <if(state.address.length > 0)>
     <div class="row">
@@ -23,7 +31,7 @@ class {
                     <a data-toggle="tab" href="#allcards">All Cards</a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#mycards">Only My Cards</a>
+                    <a data-toggle="tab" href="#mycards">My Cards <strong>(${state.ownedCardCount} of ${state.allCardCount})</strong></a>
                 </li>
             </ul>
         </div>
@@ -34,10 +42,10 @@ class {
     <div class="tab-content">
         <!--default to allcards tab pane active-->
         <div id="allcards" class="tab-pane fade in active">
-            <wallet-all-cards address=state.address collection=collection imgsrc=imgsrc/>
+            <wallet-all-cards apiUrl=apiUrl address=state.address collection=collection imgsrc=imgsrc on-all-card-total('updateAllCardCount')/>
         </div>
         <div id="mycards" class="tab-pane fade">
-            <wallet-only-owned-binder address=state.address collection=collection imgsrc=imgsrc/>
+            <wallet-only-owned-binder apiUrl=apiUrl address=state.address collection=collection imgsrc=imgsrc on-owned-card-total('updateOwnedCardCount')/>
         </div>
     </div>
 </if>

@@ -1,4 +1,10 @@
-import {formatDateMDY,abbreviateAsset} from '../../../util/helperfunctions';
+import {formatDateMDY,abbreviateAsset,round} from '../../../util/helperfunctions';
+
+$ var tooltiptitle = function(btc_qty,xcp_qty,game_qty) {
+    var game_qty = input.collection == 'sog' ? 'bcy_qty' : 'rust_qty';
+    return game_qty;
+    //return round(btc_qty,5) + " BTC/cd\n" + round(xcp_qty,5) + " XCP/cd\n"
+} 
 <table class="table table-striped table-hover table-condensed">
     <caption><strong>Filled Orders</strong></caption>
     <thead>
@@ -7,7 +13,7 @@ import {formatDateMDY,abbreviateAsset} from '../../../util/helperfunctions';
             <th class="text-center">Type</th>
             <th class="text-center">Qty</th>
             <th class="text-center">Asset</th>
-            <th class="text-center">Amount</th>
+            <th class="text-center">Price per card</th>
         </tr>
     </thead>
     <tbody>
@@ -29,7 +35,7 @@ import {formatDateMDY,abbreviateAsset} from '../../../util/helperfunctions';
                     ${abbreviateAsset(trade.payment)}
                 </td>
                 <td align="center">
-                    ${trade.payment_qty}
+                    ${trade.payment_qty / trade.asset_qty }
                 </td>
             </tr>
         </for>

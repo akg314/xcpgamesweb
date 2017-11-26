@@ -2,7 +2,7 @@
 class {
     onCreate() {
         this.state = {
-            loading: true, cards: '', address: '',collection:''
+            loading: true, apiUrl: '', cards: '', address: '',collection:''
         }
         console.log('component created');
     }
@@ -10,19 +10,25 @@ class {
         var XMLHttpRequest = require('xhr2');
         var request = new XMLHttpRequest();
         var state = this.state;
+        var parent = this;
         request.onreadystatechange = function() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     console.log("api request received");
-                    state.cards = request.response;
-                    state.loading = false; 
+                    var response = request.response;
+                    state.cards = response;
+                    state.loading = false;
+                    var tempArray = [];
+                    for(var card in response) {tempArray.push(response[card])};
+                    var ownedCardCount = tempArray.filter(x => x > 0).length;
+                    parent.emit("owned-card-total", ownedCardCount); 
                 } else {
                     console.log('error with http request in wallet-only-owned component');
                 }
             }
            
         }
-        request.open('GET', "http://aquabox/"+state.collection+"/wallet/"+state.address+"/cards");
+        request.open('GET', state.apiUrl+"/"+state.collection+"/wallet/"+state.address+"/cards");
         request.responseType = 'json';
         request.send();
     }
@@ -34,6 +40,7 @@ class {
     }
     //update cards shown when the address is changed
     onInput(input) {
+        this.state.apiUrl = input.apiUrl;
         this.state.collection = input.collection;
         this.state.address = input.address;
         this.displayWalletInfo();
@@ -41,25 +48,27 @@ class {
 }
 
 <div class="row" style="padding-top:10px;">
-        <!--only render if cards owned have loaded from API-->
-        <if(state.loading == true)>
-            <div>Loading wallet, please wait.</div>
-        </if>
-        <else-if(state.loading == false && state.cards.length == 0)>
-            <div>No cards owned for this game.</div>
-        </else-if>
-        <else>
-            <for (card,number in state.cards)>
+    <!--only render if cards owned have loaded from API-->
+    <if(state.loading == true)>
+        <div>Loading wallet, please wait.</div>
+    </if>
+    <else-if(state.loading == false && state.cards.length == 0)>
+        <div>No cards owned for this game.</div>
+    </else-if>
+    <else>
+        <for (card,number in state.cards)>
+            <if(number > 0)>
                 <div class="col-xs-6 col-sm-4 col-md-3 text-center" style="padding-bottom:10px">
                     <div class="cardBinderItem">
                         <a href="/"+input.collection+"/cards/"+card> 
-                            <img class="img-responsive" src=input.imgsrc+card+".jpg"/>
-                            <div class="caption" style="word-wrap:break-word"><strong>${number} ${card}</strong></div>
+                            <img class="img-responsive" src=input.imgsrc+"/"+card+".jpg"/>
+                            <div class="caption" style="word-wrap:break-word"><strong>${number}x ${card}</strong></div>
                         </a>
                     </div>
                 </div>
-            </for>
-	    </else>
+            </if>
+        </for>
+    </else>
 </div>
 
 style {
