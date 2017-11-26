@@ -1,8 +1,9 @@
+import {apiUrl,imgsrc} from "../../../../globals.js";
 <site-layout collection="aor">
 <@title>
-    <strong>Recent Trades</strong>
+    Recent Trades
 </@title>
 <@content>
-    <recent-trades-binder collection="aor" imgsrc="http://sogdb.com/images/aorimages/"/>
+    <recent-trades-binder collection="aor" apiUrl=apiUrl imgsrc=imgsrc+"/aorimages"/>
 </@content>
 </site-layout>

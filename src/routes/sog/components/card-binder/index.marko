@@ -2,7 +2,7 @@
 $ var XMLHttpRequest = require('xhr2');
 $ var cardsPromise = new Promise(function(resolve,reject) {
     var request = new XMLHttpRequest();
-    request.open('GET', "http://aquabox/"+input.collection+"/cards");
+    request.open('GET', input.apiUrl+"/"+input.collection+"/cards");
     request.responseType = 'json';
     // When the request loads, check whether it was successful
     request.onload = function() {
@@ -26,7 +26,7 @@ $ var cardsPromise = new Promise(function(resolve,reject) {
             <div class="col-xs-6 col-sm-4 col-md-3" style="padding-bottom:10px">
                 <div class="cardBinderItem">
                     <a href="/"+input.collection+"/cards/"+card> 
-                        <img class="img-responsive" src=input.imgsrc+card+".jpg"/>
+                        <img class="img-responsive" src=input.imgsrc+"/"+card+".jpg"/>
                         <div class="caption" style="word-wrap:break-word"><strong>${card}</strong></div>
                     </a>
                 </div>

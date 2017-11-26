@@ -1,3 +1,4 @@
+import {apiUrl} from "../../../../globals.js";
 <site-layout collection="aor">
     <@title>
         Age of Rust
@@ -7,6 +8,6 @@
                 <span class="glyphicon glyphicon-menu-left"></span>
                 Back
             </a>-->
-            <app collection="aor" card=input.params.assetId/>
+            <app collection="aor" apiUrl=apiUrl card=input.params.assetId/>
     </@content>
 </site-layout>

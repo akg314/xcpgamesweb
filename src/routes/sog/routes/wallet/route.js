@@ -1,1 +1,1 @@
-exports.path = "/mywallet/";
+exports.path = "/mywallet";

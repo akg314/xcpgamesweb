@@ -1,8 +1,9 @@
+import {apiUrl,imgsrc} from "../../../../globals.js";
 <site-layout collection="sog">
     <@title>
-        Spells of Genesis
+        My SoG Wallet
     </@title>
     <@content>
-        <wallet-binder collection="sog" imgsrc="http://sogdb.com/images/sogcards/"/>
+        <wallet-binder collection="sog" imgsrc=imgsrc+"/sogcards" apiUrl=apiUrl/>
     </@content>
 </site-layout>

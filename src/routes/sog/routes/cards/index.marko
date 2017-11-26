@@ -1,4 +1,4 @@
-//TODO: change image source url, use history API for back button
+import {apiUrl,imgsrc} from "../../../../globals.js";
 <site-layout collection="sog">
     <@title>
         Spells of Genesis
@@ -10,7 +10,7 @@
         <span class="glyphicon glyphicon-menu-left"></span>Back
         </a>
         </div>-->
-        <app collection="sog" card=input.params.assetId/>
+        <app collection="sog" apiUrl=apiUrl imgsrc=imgsrc+"/sogcards" card=input.params.assetId/>
     </@content>
 </site-layout>
 style { .btn {

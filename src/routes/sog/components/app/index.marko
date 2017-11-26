@@ -9,16 +9,18 @@ class {
     }
     onMount() {
         var cardSelected = this.input.card;
+        var apiUrl = this.input.apiUrl;
+        var imgsrc = this.input.imgsrc;
         console.log(cardSelected);
-        this.getLevels(cardSelected);
-        this.getOrders(cardSelected);
-        this.getTrades(cardSelected);
+        this.getLevels(cardSelected,apiUrl);
+        this.getOrders(cardSelected,apiUrl);
+        this.getTrades(cardSelected,apiUrl);
     }
-    getLevels(card) {
+    getLevels(card,apiUrl) {
         console.log('getting levels'); 
         var XMLHttpRequest = require('xhr2');
         var request = new XMLHttpRequest();
-        request.open('GET', "http://aquabox/sog/card/"+card);
+        request.open('GET', apiUrl+"/sog/card/"+card);
         request.responseType = 'json';
         var state = this.state;
         request.onload = function() {
@@ -31,10 +33,10 @@ class {
         };
         request.send();
     }
-    getOrders(card) {
+    getOrders(card,apiUrl) {
         var XMLHttpRequest = require('xhr2');
         var request = new XMLHttpRequest();
-        request.open('GET', "http://aquabox/card/"+card+"/orders");
+        request.open('GET', apiUrl+"/card/"+card+"/orders");
         request.responseType = 'json';
         var state = this.state;
         request.onload = function() {
@@ -47,10 +49,10 @@ class {
         };
         request.send();
     }
-    getTrades(card) {
+    getTrades(card,apiUrl) {
         var XMLHttpRequest = require('xhr2');
         var request = new XMLHttpRequest();
-        request.open('GET', "http://aquabox/card/"+card+"/trades");
+        request.open('GET', apiUrl+"/card/"+card+"/trades");
         request.responseType = 'json';
         var state = this.state;
         request.onload = function() {
@@ -68,9 +70,9 @@ class {
 
 <div>
     <div if(state.levels)>
-        <levels-bar cardInfo=state.levels/>
+        <levels-bar imgsrc=input.imgsrc cardInfo=state.levels/>
     </div>
     <div if(state.orders && state.trades)>
-        <trades-panel orders=state.orders trades=state.trades/>
+        <trades-panel orders=state.orders trades=state.trades collection=input.collection/>
     </div>
 </div>
