@@ -77,12 +77,13 @@ source .bashrc
 go env
 ```
 to check if it worked.
+### 4. Start server in background with dtach and serve static files
 
-### 4. Enable https
+### 5. Enable https
 a. Install certbot
 `sudo apt-get install certbot`
 `sudo certbot certonly`
 Then walk through the interactive prompts (choose to keep server running)
 
-### 5. Run xcpcards server with paths to keys
+### 6. Run xcpcards server with paths to keys
 
