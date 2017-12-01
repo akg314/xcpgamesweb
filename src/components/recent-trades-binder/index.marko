@@ -38,7 +38,7 @@ class {
                         <img class="img-responsive" src=input.imgsrc+"/"+trade.asset+".jpg"/>
                     </a> 
                     <!--card caption with trade details description (quantity, date, unit price)-->   
-                    <div class="caption" style="word-wrap:break-word">
+                    <div class="caption">
                         <p><span class={"text-success": trade.type == 'buy', "text-danger": trade.type == "sell"}><strong>${capitalize(trade.type)}</strong></span> ${trade.asset}</p>
                         <p><strong>${formatDateMD(trade.time)} &mdash; ${round(trade.asset_qty,3)}@ ${round(trade.payment_qty/trade.asset_qty,1)} ${abbreviateAsset(trade.payment)}/cd</strong></p>
                     </div>
@@ -47,30 +47,18 @@ class {
         </for>
     </if>
 </div>
-style {        
+style {
     .recentTradesItem p {
         padding:0px;
         margin:0px;
     }
-	div.cardBinderItem {
-		padding: 5px;
-	}
-	.cardBinderItem .caption {
-		color: black
-	}
-	.cardBinderItem:hover {
-		background-color: #286090;
-	}
-	.cardBinderItem:hover .caption {
-		color: #ffe990
-	}
-    //keep font small on small viewport so the card names fit on one line
-	@media screen and (max-width: 480px) {
-		.caption {
-			font-size: 12px ! important
-		}
-		.container {
-			padding:1px ! important;
-		}
-	}	
+    @media screen and (max-width: 450px) {
+        .container {
+            font-size:14px!important;
+            padding: 1px!important
+        }
+    }
+     .caption {
+        word-wrap:break-word;
+    }
 }
