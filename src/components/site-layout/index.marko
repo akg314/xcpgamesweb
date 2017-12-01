@@ -1,3 +1,6 @@
+//variables to select highlighted collection header
+$ var aor = (input.collection == 'aor') ? true : false;
+$ var sog = (input.collection == 'sog') ? true : false;
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -37,20 +40,22 @@
       <a href="/"+input.collection+"/recenttrades">Recent Trades</a>
       <a href="/"+input.collection+"/mywallet">My Wallet</a>
     </div>
-    <div id="main">
+    <div id="main" data-spy="affix" data-offset-top="20">
         <div class="row">
             <div class="col-xs-2">
                 <p style="font-size:24px;cursor:pointer" onclick="openNav()">&#9776</p>
             </div>
             <div class="col-xs-10 col-sm-6 mynavbar">
                 <ul>
-                    <li><a href="/"><strong>Home</strong></a></li>
-                    <li><a href="/aor"><strong>Age of Rust</strong></a></li>
-                    <li><a href="/sog"><strong>Spells of Genesis</strong></a></li>
+                    <li><a href="/aor" class="collectionHeaderLink" style={'opacity': aor ? '1' : '.5', 'text-decoration': aor ? 'underline' : 'none'}>
+                            <strong>Age of Rust</strong>
+                        </a></li>
+                    <li><a href="/sog" class="collectionHeaderLink" style={'opacity': sog ? '1' : '.5', 'text-decoration': sog ? 'underline' : 'none' }>
+                            <strong>Spells of Genesis</strong></a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-4">
-                <h1><strong><include(input.title)/></strong></h1>
+                <h3 id="pageTitle" style="margin:2px"><strong><include(input.title)/></strong></h3>
             </div>
         </div>
     </div>
@@ -59,16 +64,18 @@
   function openNav() {
       document.getElementById("mySidenav").style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
-      document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+      //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
   }
   function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
       document.getElementById("main").style.marginLeft= "0";
-      document.body.style.backgroundColor = "white";
+      //document.body.style.backgroundColor = "black";
   }
   </script>
-  <div.content class="container" style="background:white;padding:15px">
+  <div.content class="container" style="background-color:white;padding:15px">
     <include(input.content)/>
   </div>
   </body>
 </html>
+
+
