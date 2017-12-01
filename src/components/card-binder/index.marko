@@ -1,4 +1,6 @@
 $ var XMLHttpRequest = require('xhr2');
+//workaround for sog cards supported in SOG
+$ var sogPlayableInAor = ["ETHEREUMCARD","XAJIBOSS","SATOSHICARD","CRYSTALIBUR","SARUTOBICARD","BTCMEETUPCD","NEMCARD","FORKCARD","CARDAUGUR","SATOSHILITE","DASHCD","DAOSOGCARD"];
 class {
     onCreate() {
         this.state = {cards: null}
@@ -23,8 +25,13 @@ class {
     }
 }
 
+
 <div class="row text-center" style="padding-top:10px;">
-	<h2 style="margin-top:2px">Browse all cards</h2>
+    <div>
+        <if(input.collection == 'aor')>
+	        <h2 class="collectionHeader" style="margin-top:2px">Rustchain Cards</h2>
+        </if>
+    </div>
 	<if(state.cards)>
         <for (card in state.cards.sort())>
             <div class="col-xs-6 col-sm-4 col-md-3" style="padding-bottom:10px">
@@ -38,6 +45,27 @@ class {
         </for>
 	</if>
 </div>
+
+//scaffolding prepared for SOG card integration in AoR game
+<if(false)> //uncomment this to launch!
+<if(input.collection == 'aor')>
+    <hr/>
+    <div class="row text-center">
+    <h2 class="collectionHeader" style="margin-top:2px">Supported Spells of Genesis Cards</h2>
+        <for(card in sogPlayableInAor)>
+            <div class="col-xs-6 col-sm-4 col-md-3" style="padding-bottom:10px">
+                <div class="cardBinderItem">
+                    <a href="/"+input.collection+"/cards/"+card> 
+                        <img class="img-responsive" src=input.imgsrc+"/"+card+".jpg"/>
+                        <div class="caption" style="word-wrap:break-word"><strong>${card}</strong></div>
+                    </a>
+                </div>
+            </div>
+        </for>
+    </div>
+</if>
+</if>
+
 
 style {
 	div.cardBinderItem {
@@ -56,6 +84,9 @@ style {
 		.caption {
 			font-size: 12px ! important
 		}
+        .collectionHeader {
+            font-size: 18px ! important
+        }
 		.container {
 			padding:1px ! important;
 		}
