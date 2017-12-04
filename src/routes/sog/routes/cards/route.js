@@ -150,7 +150,8 @@ var cardEndpoints =[
 "MARKETACARD",
 "SCARECROWCD",
 "SHOPKEEPERCD",
-"WAGATECARD"
+"WAGATECARD",
+"BALABASTER"
 ];
 var allParams = [];
 for (var i = 0; i <cardEndpoints.length;i++){
