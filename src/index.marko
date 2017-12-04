@@ -12,6 +12,16 @@
   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
   crossorigin="anonymous"></script>
+  <!--set language for translation-->
+    <script>
+        language = function() {
+            if(navigator.languages != "undefined") {
+                return navigator.languages[0]
+            } else {
+                return navigator.language
+            }
+        };
+    </script>
   <!--bootstrap styles and js-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <!-- Latest compiled and minified JavaScript -->
