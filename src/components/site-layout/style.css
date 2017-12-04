@@ -3,7 +3,8 @@
 body {
     background-color: black;
     font-family: 'EB Garamond', serif;
-    font-size:18px; 
+    font-size:18px;
+    min-height:1000px; /*to fix bootstrap affix.js violent screen movement bug*/ 
 }
 /*-----------------------------*/
 /*site layout styles*/
@@ -44,12 +45,11 @@ header {
 .affix { /*to affix navbar to top of page*/
     top: 0;
     z-index:9999;
-    width:100% 
+    width:100%;
+    border-bottom: 1px solid #ccc;
+    left: 0px 
 }
-.affix > .row {
-    padding-top: 15px;
-    margin-top:20px
-}
+
     /*styling for sidenavbar*/
 .sidenav {
     height: 100%;
