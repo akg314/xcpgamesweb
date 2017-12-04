@@ -1,4 +1,5 @@
 //variables to select highlighted collection header
+var Localize = require('localize');
 $ var aor = (input.collection == 'aor') ? true : false;
 $ var sog = (input.collection == 'sog') ? true : false;
 <!DOCTYPE html>
@@ -53,6 +54,9 @@ $ var sog = (input.collection == 'sog') ? true : false;
                     <li><a href="/sog" class="collectionHeaderLink" style={'opacity': sog ? '1' : '.5', 'text-decoration': sog ? 'underline' : 'none' }>
                             <strong>Spells of Genesis</strong></a></li>
                 </ul>
+            </div>
+            <div class="col-xs-2">
+                <!--<email-subscribe/>-->
             </div>
             <div class="col-xs-12 col-sm-4">
                 <h3 id="pageTitle" style="margin:2px"><strong><include(input.title)/></strong></h3>
