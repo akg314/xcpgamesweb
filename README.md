@@ -43,7 +43,7 @@ sudo apt-get install dtach
 ### 3. Set up xcpcards server
 a. Cache git credentials and clone xcpcards server repo
 ```git config --global credential.helper cache
-git config --global credential.helper 'cache timeout=3600000'
+git config --global credential.helper 'cache --timeout=3600000'
 git clone https://github.com/alexmat/xcpcards.git
 ```
 
@@ -85,5 +85,14 @@ a. Install certbot
 `sudo certbot certonly`
 Then walk through the interactive prompts (choose to keep server running)
 
-### 6. Run xcpcards server with paths to keys
+### 6. Run xcpcards server with ssl flag, passing in paths to keys (see xcpcards doc for more info)
+(if not specified, default path is /PATH/TO/xcpcards source)
+```
+sudo -s
+dtach -A /tmp/xcpcards /bin/bash
+/PATH/TO/BINARY/xcpcards -db /PATH/TO/data/ -static /PATH/TO/static -port 80 -ssl > var/log/xcpcards.log 2> /var/log/xcpcards.err
+CTRL+\
+CTRL+D
+```
+check that server has started: `tail -f /var/log/xcpcards.log`
 
