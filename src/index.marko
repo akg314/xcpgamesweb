@@ -42,6 +42,7 @@
         }
     </style>
     <link rel="manifest" href="./manifest.json">
+    
 <!--aor fonts-->
   <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
   <!--google analytics script tags-->
@@ -77,4 +78,11 @@
     </div>
     </div>
 </body>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./service-worker.js').then(function() { 
+    console.log("Service Worker Registered"); 
+  });
+}
+</script>
 </html>
