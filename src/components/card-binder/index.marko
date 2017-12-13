@@ -8,7 +8,7 @@ class {
     onMount() {
         var request = new XMLHttpRequest();
         var state = this.state;
-        request.open('GET', this.input.apiUrl+"/"+this.input.collection+"/cards");
+        request.open('GET', this.input.apiUrl+"/"+this.input.collection+"/cards/list");
         request.responseType = 'json';
         // When the request loads, check whether it was successful
         request.onload = function() {
