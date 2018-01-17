@@ -40,6 +40,7 @@ class {
         var state = this.state;
         request.onload = function() {
             if (request.status === 200) {
+                state.ordersLastUpdate = Date();
                 state.orders = request.response;
             } else {
             // If it fails, reject the promise with a error message
@@ -56,6 +57,8 @@ class {
         var state = this.state;
         request.onload = function() {
             if (request.status === 200) {
+                state.tradesLastUpdate = Date();
+                console.log(state.tradesLastUpdate);
                 state.trades = request.response;
                 window.chartData = request.response;
             } else {
@@ -69,7 +72,7 @@ class {
 
 <div>
     <div if(state.levels)>
-        <levels-bar cardInfo=state.levels imgsrc="https://xcp.cards/images/aorimages/"/>
+        <levels-bar cardInfo=state.levels imgsrc=input.imgsrc+"/aorimages/"/>
     </div>
     <hr/>
     <div if(state.orders && state.trades)>

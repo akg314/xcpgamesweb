@@ -1,0 +1,11 @@
+$ var Localize = require('localize');
+
+$ var myLocalize = new Localize({
+    "Welcome...": {
+        "es": "Bienvenidos",
+        "jp": "ようこそ"
+    }
+})
+<div>
+${myLocalize.translate("Welcome")}
+</div>

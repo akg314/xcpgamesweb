@@ -139,6 +139,8 @@ function showHideSeries () {
     if (sel.length > 0) {
         if (sel[0].row == null) {
             var col = sel[0].column;
+            window.selCurrency = data.getColumnLabel(col - 1);
+            console.log(data.getColumnLabel(col - 1));
             var col = columns[col].sourceColumn;
             if (series[col - 1].color !== "#CCCCCC") { //if its not greyed on legend, it's already displayed
                 console.log("Already displayed.");

@@ -1,4 +1,5 @@
 //INPUT REQUIRED: imgsrc, cardInfo
+import {formatDateMDYnotime} from '~/src/components/util/helperfunctions.js';
 
 $ var cardInfo = input.cardInfo;
 //get attributes for ability-table component
@@ -20,7 +21,7 @@ $ var isRare = (attributes.filter(x => x.name === "Rare Gold Series").length > 0
                     <rare-access-table attributes=attributes/>
                 </else>                        
             </div>
-<!--Cards Available for sm viewport and up-->
+<!--Cards Available and Release Date for sm viewport and up-->
             <div class="col-xs-4 smAvailableTable">
                 <table class="table-border">
                     <tr>
@@ -29,14 +30,25 @@ $ var isRare = (attributes.filter(x => x.name === "Rare Gold Series").length > 0
                     <tr>
                         <td align="center" style="font-size:26px"><strong>${input.cardInfo.quantity}</strong></td>
                     </tr>
+                    <tr>
+                        <td align="center" style="font-style:italic;border-top:0px;padding-top:10px">Released 8-31-17</td>
+                    </tr>
                 </table>
             </div>
 <!--Cards Available for xs viewport-->
             <div class="col-xs-12 xsAvailableTable" >
-                <p class="text-center">
-                    Cards available:<br/>
-                    <strong>${input.cardInfo.quantity}</strong>
-                </p>
+                <div class="col-xs-6">
+                    <p class="text-center">
+                        Cards available:<br/>
+                        <strong>${input.cardInfo.quantity}</strong>
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <p class="text-center">
+                        Release Date:<br/>
+                        <span style=""><strong>${formatDateMDYnotime(input.cardInfo.released)}</strong></span>
+                    </p>
+                </div>
             </div>
         </div>
 <!--Card Description for md and larger viewport-->
