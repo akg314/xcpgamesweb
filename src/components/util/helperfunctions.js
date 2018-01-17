@@ -24,4 +24,8 @@ exports.formatDateMDY = function(date) {
 exports.formatDateMDYnotime = function(date) {
     return moment(date, "MM-DD-YYYY").format('M-DD-YY');
 }
+exports.formatDateMDYTime = function(date) {
+    return moment(date, "YYYY-MM-DDTHH:mm:ssZ").format('M-DD-YY, H:mm:ss a');
+}
+
 

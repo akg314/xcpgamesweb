@@ -14,13 +14,13 @@ class {
     onMount() {    
         var request = new XMLHttpRequest();
         var state = this.state;
-        request.open('GET', this.input.apiUrl+"/"+this.input.collection+"/trades");
+        request.open('GET', this.input.apiUrl+"/sog/SATOSHICARD/orders");
         request.responseType = 'json';
         // When the request loads, check whether it was successful
         request.onload = function() {
             if (request.status === 200) {
             // If successful, resolve the promise by passing back the request response
-              state.trades = request.response.data;
+              state.trades = request.response;
             } else {
             // If it fails, reject the promise with a error message
               console.log(Error('Trades didn\'t load successfully; error'));

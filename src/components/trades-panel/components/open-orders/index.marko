@@ -1,4 +1,4 @@
-import {abbreviateAsset,round} from '../../../util/helperfunctions';
+import {abbreviateAsset,round,formatDateMDYTime} from '../../../util/helperfunctions';
 
 //----Sorting functions for open order tables
 //sort from high to low buy order prices
@@ -13,7 +13,7 @@ $ var sortedSellOrders = input.sellOrders.sort(function(a,b) {
     b = b.get_remaining/b.give_remaining;
     return a<b ? -1 : a>b ? 1 : 0;
 });
-
+<hr/>
 <div id="open-buy-orders" class="col-xs-12 col-sm-6">
     <table class="table table-condensed table-striped table-hover" style="width:100%;">
         <caption><strong>Open Buy Orders</strong></caption>
@@ -45,7 +45,8 @@ $ var sortedSellOrders = input.sellOrders.sort(function(a,b) {
                     </td>
                 </tr>
             </for>
-        </tbody>   
+        </tbody> 
+        <!--<div style="font-style:italic;font-size:14px">Last updated ${formatDateMDYTime(input.timestamp)}</div>-->
     </table>
 </div>
 <div id="open-sell-orders" class="col-xs-12 col-sm-6">

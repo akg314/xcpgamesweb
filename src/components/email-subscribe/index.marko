@@ -1,0 +1,57 @@
+class {
+     showForm() {
+        var popup = document.getElementById('myPopup');
+        popup.classList.toggle('show');
+        console.log('show text')
+    }
+}
+<div class="popup" on-click('showForm')>
+    <i class="glyphicon glyphicon-envelope"></i>
+    <span>Subscribe via email!</span>
+</div>
+<div>
+<!--popup form text-->
+<span class="popuptext" id="myPopup">
+        Enter your details to be subscribed:
+        <form>
+          Name:<br>
+          <input type="text" name="name"><br>
+          Email Address:<br>
+          <input type="text" name="emailaddress">
+        </form>
+        <button>Submit</button>
+    </span>
+</div>
+
+<style>
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popuptext {
+    visibility: hidden;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 8px;
+    position: fixed;
+    top: 200px;
+    left: 30%;
+    z-index: 1;
+}
+
+/* Toggle this class - hide and show the popup */
+.show {
+    visibility: visible;
+}
+
+</style>

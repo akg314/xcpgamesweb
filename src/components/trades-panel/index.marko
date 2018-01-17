@@ -5,9 +5,9 @@
         <div id="chart_div"></div>
     </div>
     <div class="col-xs-12 col-md-5">
-        <recent-trades-table recentTrades=input.trades collection=input.collection/>
+        <recent-trades-table recentTrades=input.trades timestamp=input.tradestimestamp collection=input.collection/>
     </div>
     <div>
-        <open-orders buyOrders=input.orders.BuyOrders sellOrders=input.orders.SellOrders/>
+        <open-orders buyOrders=input.orders.BuyOrders sellOrders=input.orders.SellOrders timestamp=input.orderstimestamp/>
     </div>
 </div>
