@@ -1,4 +1,4 @@
-import {formatDateMDY,abbreviateAsset,round} from '../../../util/helperfunctions';
+import {formatDateMDY,formatDateMDYTime, abbreviateAsset,round,formatTimeStamp} from '../../../util/helperfunctions';
 
 <table class="table table-striped table-hover table-condensed">
     <caption><strong>Filled Orders</strong></caption>
@@ -34,6 +34,7 @@ import {formatDateMDY,abbreviateAsset,round} from '../../../util/helperfunctions
                 </td>
             </tr>
         </for>
+        <last-update-bar timestamp=input.timestamp/>        
     </tbody>         
 </table>
 

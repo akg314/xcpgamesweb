@@ -45,8 +45,8 @@ $ var sortedSellOrders = input.sellOrders.sort(function(a,b) {
                     </td>
                 </tr>
             </for>
+                <last-update-bar timestamp=input.timestamp/>
         </tbody> 
-        <!--<div style="font-style:italic;font-size:14px">Last updated ${formatDateMDYTime(input.timestamp)}</div>-->
     </table>
 </div>
 <div id="open-sell-orders" class="col-xs-12 col-sm-6">
@@ -80,6 +80,7 @@ $ var sortedSellOrders = input.sellOrders.sort(function(a,b) {
                     </td>
                 </tr>
             </for>
+            <last-update-bar timestamp=input.timestamp/>
         </tbody>   
     </table>
 </div>
