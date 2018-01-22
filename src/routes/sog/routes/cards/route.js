@@ -1,5 +1,11 @@
 exports.path = '/cards/:assetId';
 var cardEndpoints =[
+"CARNIATHCREA",
+"TRIDENTQUEEN",
+"HEAVENLYSHEP",
+"DARKAODH",
+"SLASHINGCRIR",
+"TRANSCENDEN",
 "CALABASTER",
 "LALABASTER",
 "MUSHROOMSIMP",

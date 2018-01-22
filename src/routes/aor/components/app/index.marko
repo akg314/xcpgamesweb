@@ -40,7 +40,6 @@ class {
         var state = this.state;
         request.onload = function() {
             if (request.status === 200) {
-                state.ordersLastUpdate = Date();
                 state.orders = request.response;
             } else {
             // If it fails, reject the promise with a error message
@@ -57,10 +56,8 @@ class {
         var state = this.state;
         request.onload = function() {
             if (request.status === 200) {
-                state.tradesLastUpdate = Date();
-                console.log(state.tradesLastUpdate);
                 state.trades = request.response;
-                window.chartData = request.response;
+                window.chartData = request.response.data;
             } else {
             // If it fails, reject the promise with a error message
                 console.log('Trades didn\'t load successfully; error');
@@ -76,6 +73,6 @@ class {
     </div>
     <hr/>
     <div if(state.orders && state.trades)>
-        <trades-panel orders=state.orders trades=state.trades collection=input.collection/>
+        <trades-panel orders=state.orders.data orderstimestamp=state.orders.timestamp trades=state.trades.data  tradestimestamp=state.trades.timestamp collection=input.collection/>
     </div>
 </div>
