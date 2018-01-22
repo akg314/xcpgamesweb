@@ -12,7 +12,7 @@ import {formatDateMDYnotime} from '../../../../components/util/helperfunctions';
         <icon-bar cardInfo=cardInfo imgsrc=imgsrc/>
         <levels-table levels=cardInfo.levels/>
         <div class="col-xs-12 col-sm-6">
-            <h4 class="text-center"><strong>Release Date: ${formatDateMDYnotime(cardInfo.released)}</strong></h4>
+            <h4 class="text-center"><strong>Release Date: ${cardInfo.released.length > 0 ? formatDateMDYnotime(cardInfo.released) : "not applicable"}</strong></h4>
         </div>
         <div class="col-xs-12 col-sm-6">
             <h4 class="text-center"><strong>Cards Available: ${cardInfo.quantity}</strong></h4>
