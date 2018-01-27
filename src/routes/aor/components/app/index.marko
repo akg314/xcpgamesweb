@@ -1,14 +1,16 @@
 //INPUT REQUIRED: card,collection
 <!--card info page data contained in this component-->
 <script type="text/javascript" src="./priceChart.js"></script>
+var sogcards = ["ETHEREUMCARD","XAJIBOSS","SATOSHICARD","CRYSTALIBUR","SARUTOBICARD","BTCMEETUPCD","NEMCARD","FORKCARD","CARDAUGUR","SATOSHILITE","DASHCD","DAOSOGCARD"];
 class {
     onCreate() {
         this.state = {
-            orders: null, trades: null, levels: null
+            orders: null, trades: null, levels: null, card: null
         }
     }
     onMount() {
         var cardSelected = this.input.card;
+	this.state.card = this.input.card;
         var apiUrl = this.input.apiUrl;
         console.log(cardSelected);
         this.getLevels(cardSelected,apiUrl);
@@ -69,7 +71,12 @@ class {
 
 <div>
     <div if(state.levels)>
-        <levels-bar cardInfo=state.levels imgsrc=input.imgsrc+"/aorimages/"/>
+	<if(state.levels && !sogcards.includes(state.card))>
+        	<levels-bar cardInfo=state.levels imgsrc=input.imgsrc+"/aorimages/"/>
+	</if>
+	<else-if(state.levels)>
+		${state.card}
+	</else-if>
     </div>
     <hr/>
     <div if(state.orders && state.trades)>

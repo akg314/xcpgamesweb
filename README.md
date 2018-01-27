@@ -1,4 +1,20 @@
 #xcpgameweb
+## How to add new cards to a db
+1. add new sql file to GAME_ID/sql database
+Enter data for the columns released and issued as MM-DD-YYYY
+
+issued: most recent issuance date from xchain.io.
+released: release date on sogassets.com
+if released not available, use empty string: ''
+
+2. Update src/routes/GAME_ID/routes/cards/route.js with new card(s)
+3. Curl card photo to appropriate xcp.cards directory on the production server
+
+## How to create a new db
+1. Clone a git repository called GAME_ID+'db'
+2. Create a database structure
+
+
 ## How to spin up a new micro instance running xcp.cards API and static files of choice
 
 ### 1. Set up a micro instance:

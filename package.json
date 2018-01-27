@@ -1,26 +1,26 @@
 {
-  "name": "hello-world",
+  "name": "xcpcards",
   "version": "1.0.0",
-  "description": "Demo of how to build an app using marko-starter",
+  "description": "Blockchain trading card site",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marko-js-samples/marko-starter-demo"
+    "url": "https://github.com/hikergirl1234/xcpgamesweb"
   },
   "license": "MIT",
   "devDependencies": {
+    "browser-sync": "^2.18.13",
     "eslint": "^4.2.0",
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-prettier": "^2.1.2",
-    "google-charts": "^1.0.0",
-    "prettier": "^1.5.2"
+    "gulp": "^3.9.1",
+    "prettier": "^1.5.2",
+    "sw-precache": "^5.2.0"
   },
   "dependencies": {
-    "jquery": "^3.2.1",
-    "jsdom": "^11.3.0",
+    "localize": "^0.4.7",
     "marko": "^4.2.4",
     "marko-starter": "^1.2.1",
     "moment": "^2.19.1",
-    "query-string": "^5.0.1",
     "wallet-address-validator": "^0.1.1",
     "xhr2": "^0.1.4"
   },

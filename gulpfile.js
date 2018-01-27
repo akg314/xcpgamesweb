@@ -7,7 +7,7 @@ gulp.task('generate-sw', function() {
   var swOptions = {
     //cache all files from the dist directory
     staticFileGlobs: [
-      '../dist/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}',
+      'dist/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}',
       './*'
     ],
     stripPrefix: '.',
@@ -17,27 +17,24 @@ gulp.task('generate-sw', function() {
       handler: 'networkFirst',
       options: {
         cache: {
-          name: 'api-data'
+          name: 'xcp-cards-api-data'
         }
       }
     }]
   };
   //write service worker to root of website
-  return swPrecache.write('../dist/service-worker.js', swOptions);
+  return swPrecache.write('dist/service-worker.js', swOptions);
 });
 
 gulp.task('serve', ['generate-sw'], function() {
   browserSync({
     notify: false,
-    logPrefix: 'weatherPWA',
+    logPrefix: 'xcpcards',
     server: ['.'],
     open: false
   });
   gulp.watch([
-    './*.html',
-    './scripts/*.js',
-    './styles/*.css',
-    '!./service-worker.js',
+    'dist/*.html',
     '!./gulpfile.js'
   ], ['generate-sw'], browserSync.reload);
 });

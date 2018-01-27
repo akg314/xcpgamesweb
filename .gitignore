@@ -9,3 +9,6 @@ dist/
 .DS_STORE
 dump.rdb
 .marko-devtools/
+src/service-worker.js
+src/index.marko.js
+*~
