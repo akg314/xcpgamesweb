@@ -66,14 +66,14 @@ git config --global credential.helper 'cache --timeout=3600000'
 git clone https://github.com/alexmat/xcpcards.git
 ```
 
-b. Follow README.md for the server to set it up
-After `go get -d ./...`, run `rm -rf ~/xcpcards`
-i. Clone collection databases into ~/go/src/github.com/alexmat
+b. Follow README.md for the server to set it up NOTE: After `go get -d ./...`, run `rm -rf ~/xcpcards`
+
+i. Clone collection databases into `~/go/src/github.com/alexmat`
 ```
 git clone https://github.com/alexmat/sogdb.git
 git clone https://github.com/alexmat/aordb.git
 ```
-**Before creating databases, initialize data folder**
+**Before creating databases, initialize data folder inside `go/src/github.com/alexmat/xcpcards`**
 ```
 mkdir data
 touch data/aorcards.db
