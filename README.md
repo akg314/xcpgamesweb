@@ -40,7 +40,9 @@ sudo apt upgrade
 ```
 b. Install latest version of go
 i. Download go package, unzip, and move to GOROOT directory
-wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
+
+`wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz`
+```
 sudo tar -xvf go1.9.2.linux-amd64.tar.gz
 sudo mv go /usr/local
 ```
